@@ -13,7 +13,6 @@ import '@js/jquery.min.js'
 import '@js/jquery.scrollex.min.js'
 import '@js/jquery.scrolly.min.js'
 import '@js/util.js'
-//import '@js/main.js'
 
 // Initialize HeadManager
 const headManager = new HeadManager()
@@ -52,7 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setTimeout(() => {
     document.body.classList.remove('is-preload')
-  }, 1
+  }, 100)
+
   $('.scrolly').scrolly()
 
   // if (currentPage != 'home') {
