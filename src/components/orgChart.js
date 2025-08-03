@@ -30,8 +30,11 @@ const nodeContentTemplate = (d, i, arr, state) => {
         </div> 
         
         <div style="display:flex;justify-content:space-between;padding-left:15px;padding-right:15px;">
-          <div>Manages: ${d.data._directSubordinates} 👤</div>  
-          <div>Oversees: ${d.data._totalSubordinates} 👤</div>  
+          <ul class="icons" 
+          <li><a href=" ${
+            d.data.profileUrl
+          }" class="icon brands fa-linkedin"></a></li>
+          </ul
         </div>
         
       </div>     
@@ -72,11 +75,16 @@ const initOrgChart = async () => {
       .container('.chart-container')
       .data(dataFlattened)
       .nodeWidth((d) => 250)
-      .initialZoom(0.7)
+      .initialZoom(0.9)
+      .nodeId((d) => d.id)
       .nodeHeight((d) => 175)
       .childrenMargin((d) => 40)
       .compactMarginBetween((d) => 15)
       .compactMarginPair((d) => 80)
+      .nodeButtonWidth((d) => 40)
+      .nodeButtonHeight((d) => 40)
+      .nodeButtonX((d) => -20)
+      .nodeButtonY((d) => -20)
       .nodeContent(nodeContentTemplate)
       .render()
 
@@ -90,9 +98,8 @@ const initOrgChart = async () => {
       container.innerHTML = `
         <div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #666;">
           <div style="text-align: center;">
-            <h3>Unable to load organization chart</h3>
-            <p>Please check the console for more details.</p>
-          </div>
+            <h3>Unable to load team chart</h3>
+            </div>
         </div>
       `
     }

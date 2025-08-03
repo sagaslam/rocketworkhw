@@ -17,6 +17,7 @@
         <ul class="actions">
           <li>
             <a
+              id="continueButton"
               href="#header"
               class="button icon solid solo fa-arrow-down scrolly"
               >Continue</a
@@ -32,121 +33,222 @@
       <nav id="nav"></nav>
       <!-- Main -->
       <div id="main">
-        <!-- Featured Post -->
-        <article class="post featured">
+        <section class="post">
           <header class="major">
-            <span class="date">July 25, 2025</span>
-            <h2>
-              <a href="#">Are you ready<br />for the challenge?</a>
-            </h2>
-            <p>
-              The European Rocketry Challenge (EuRoC) is the first rocket launch
-              competition for European university teams. The Portuguese Space
-              Agency created the competition in 2020 and has since gathered
-              teams from various European countries in the Alentejo region. The
-              2025 edition of the competition has the support of the Portuguese
-              Army and the Municipality of Constância.
-            </p>
+            <h1>
+              <a href="#"
+                >What are we looking<br />
+                for from Applicants?</a
+              >
+            </h1>
           </header>
-          <a href="#" class="image main"
-            ><img src="images/euroc.jpg" alt=""
-          /></a>
-          <ul class="actions special">
-            <li><a href="#" class="button large">Full Story</a></li>
-          </ul>
-        </article>
+          <p>
+            In all these roles we are looking for people who are comfortable
+            working with others and have some experience in design. The key
+            skills we are looking for are the ability to think on your feet,
+            research and good time management. For the leadership roles you’ll
+            work across the subsystem teams to keep things running smoothly.
+            You’ll be supported by the team lead and the treasurer to make sure
+            we’re on time and on budget. Therefore we look for people who are
+            comfortable leading teams and working with other team leaders. It
+            all sounds like a big challenge, but they’ll be lots of us working
+            on it together and it’s a great chance to grow your experience,
+            enhance your CV, meet new people and get stuck into a real
+            engineering project.
+          </p>
 
-        <!-- Posts -->
-        <section class="posts">
-          <article>
-            <header>
-              <span class="date">July 24, 2025</span>
-              <h2>
-                <a href="#"
-                  >Rocket Works<br />
-                  Heriot-Watt</a
+          <form id="rocketForm">
+            <div class="fields">
+              <div class="field">
+                <label for="name">Name *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  minlength="2"
+                  maxlength="50"
+                  autocomplete="name"
+                />
+                <div class="error-message" id="nameError"></div>
+              </div>
+
+              <div class="field">
+                <label for="email">Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                />
+                <div class="error-message" id="emailError"></div>
+              </div>
+
+              <div class="field">
+                <label for="year"
+                  >Year (Stage as of September 2025)
+                  <span class="required">*</span></label
                 >
-              </h2>
-            </header>
-            <a href="#" class="image fit"
-              ><img src="images/welcome.jpg" alt=""
-            /></a>
-            <p>Welcome, it's great to have you here.</p>
-            <ul class="actions special">
-              <li><a href="#" class="button">Full Story</a></li>
-            </ul>
-          </article>
-          <article>
-            <header>
-              <span class="date">April 22, 2017</span>
-              <h2>
-                <a href="#"
-                  >Primis eget<br />
-                  imperdiet lorem</a
+                <select id="year" name="year" required>
+                  <option value="">Select your year</option>
+                  <option value="1st Year">1st Year</option>
+                  <option value="2nd Year">2nd Year</option>
+                  <option value="3rd Year">3rd Year</option>
+                  <option value="4th Year">4th Year</option>
+                  <option value="Masters">Masters</option>
+                  <option value="PhD">PhD</option>
+                  <option value="Postdoc">Postdoc</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="discipline"
+                  >HW University Discipline (Your course of study)
+                  <span class="required">*</span></label
                 >
-              </h2>
-            </header>
-            <a href="#" class="image fit"
-              ><img src="images/pic03.jpg" alt=""
-            /></a>
-            <p>
-              Donec eget ex magna. Interdum et malesuada fames ac ante ipsum
-              primis in faucibus. Pellentesque venenatis dolor imperdiet dolor
-              mattis sagittis magna etiam.
-            </p>
-            <ul class="actions special">
+                <input
+                  type="text"
+                  id="discipline"
+                  name="discipline"
+                  required
+                  placeholder="e.g., Mechanical Engineering, Aerospace Engineering, etc."
+                />
+              </div>
+
+              <div class="field">
+                <label>List Positions <span class="required">*</span></label>
+                <div class="checkbox-group">
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="airframe"
+                      name="positions"
+                      value="Airframe"
+                    />
+                    <label for="airframe">Airframe</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="flightDynamics"
+                      name="positions"
+                      value="Flight Dynamics"
+                    />
+                    <label for="flightDynamics">Flight Dynamics</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="propulsion"
+                      name="positions"
+                      value="Propulsion"
+                    />
+                    <label for="propulsion">Propulsion</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="avionics"
+                      name="positions"
+                      value="Avionics"
+                    />
+                    <label for="avionics">Avionics</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="payload"
+                      name="positions"
+                      value="Payload"
+                    />
+                    <label for="payload">Payload</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="outreach"
+                      name="positions"
+                      value="Outreach"
+                    />
+                    <label for="outreach">Outreach</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="media"
+                      name="positions"
+                      value="Media"
+                    />
+                    <label for="media">Media</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="whyJoin"
+                  >Why you would like to join Rocket Works?
+                  <span class="required">*</span></label
+                >
+                <textarea
+                  id="whyJoin"
+                  name="whyJoin"
+                  required
+                  minlength="10"
+                  maxlength="500"
+                  placeholder="Tell us about your passion for rocketry and what motivates you to join our team..."
+                ></textarea>
+              </div>
+
+              <div class="field">
+                <label for="experience"
+                  >What experience and skills can you bring to the team?
+                  <span class="required">*</span></label
+                >
+                <textarea
+                  id="experience"
+                  name="experience"
+                  required
+                  minlength="10"
+                  maxlength="500"
+                  placeholder="Describe your relevant experience, technical skills, projects, or any other qualifications..."
+                ></textarea>
+              </div>
+
+              <div class="field">
+                <label for="additionalInfo"
+                  >Any other helpful / relevant information you want to
+                  provide?</label
+                >
+                <textarea
+                  id="additionalInfo"
+                  name="additionalInfo"
+                  placeholder="Any additional information that might be relevant to your application..."
+                ></textarea>
+              </div>
+
+              <div class="field">
+                <label for="adjustments"
+                  >Any adjustments that need to be made to the interview
+                  process?</label
+                >
+                <textarea
+                  id="adjustments"
+                  name="adjustments"
+                  placeholder="Please let us know if you need any accommodations for the interview process..."
+                ></textarea>
+              </div>
+            </div>
+
+            <ul class="actions">
               <li>
-                <a href="/content/story1.html" class="button">Full Story</a>
+                <input type="submit" value="Send Message" class="submit-btn" />
               </li>
             </ul>
-          </article>
-          <article>
-            <header>
-              <span class="date">April 18, 2017</span>
-              <h2>
-                <a href="#"
-                  >Ante mattis<br />
-                  interdum dolor</a
-                >
-              </h2>
-            </header>
-            <a href="#" class="image fit"
-              ><img src="/images/pic04.jpg" alt=""
-            /></a>
-            <p>
-              Donec eget ex magna. Interdum et malesuada fames ac ante ipsum
-              primis in faucibus. Pellentesque venenatis dolor imperdiet dolor
-              mattis sagittis magna etiam.
-            </p>
-            <ul class="actions special">
-              <li><a href="#" class="button">Full Story</a></li>
-            </ul>
-          </article>
-          <article>
-            <header>
-              <span class="date">April 14, 2017</span>
-              <h2>
-                <a href="#"
-                  >Tempus sed<br />
-                  nulla imperdiet</a
-                >
-              </h2>
-            </header>
-            <a href="#" class="image fit"
-              ><img src="/images/pic05.jpg" alt=""
-            /></a>
-            <p>
-              Donec eget ex magna. Interdum et malesuada fames ac ante ipsum
-              primis in faucibus. Pellentesque venenatis dolor imperdiet dolor
-              mattis sagittis magna etiam.
-            </p>
-            <ul class="actions special">
-              <li><a href="#" class="button">Full Story</a></li>
-            </ul>
-          </article>
+            <div id="responseMessage" class="message"></div>
+          </form>
         </section>
       </div>
-
       <!-- Footer -->
       <div id="footer"></div>
     </div>

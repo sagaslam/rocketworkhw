@@ -1,8 +1,11 @@
 import HeadManager from '@js/head-manager.js'
-import ContactUsValidator from '@js/ContactUsValidator.js'
+import ContactUsValidator from '@js/contactusvalidator.js'
 import { pageConfigs } from '@data/page-configs.js'
 import { createFooter } from '@components/footer.js'
 import { initOrgChart, waitForLibraries } from '@components/orgChart.js'
+import { initParallax } from '@js/parallax.js'
+import { initIntro } from '@js/intro.js'
+import { initNav } from '@js/nav.js'
 
 import { createNavigation, setActiveMenuItem } from '@components/navigation.js'
 
@@ -10,7 +13,7 @@ import '@js/jquery.min.js'
 import '@js/jquery.scrollex.min.js'
 import '@js/jquery.scrolly.min.js'
 import '@js/util.js'
-import '@js/main.js'
+//import '@js/main.js'
 
 // Initialize HeadManager
 const headManager = new HeadManager()
@@ -42,6 +45,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set menu active
   setActiveMenuItem(currentPage)
+
+  initParallax(document.getElementById('wrapper'))
+  initIntro(document.getElementById('main'))
+  initNav()
+
+  setTimeout(() => {
+    document.body.classList.remove('is-preload')
+  }, 1
+  $('.scrolly').scrolly()
+
+  // if (currentPage != 'home') {
+  //   document.querySelector('#intro img').style.display = 'none'
+  //   document.getElementById('continueButton').click()
+  // }
 
   console.log(`Page config: ${pageConfig.title}`)
   console.log(`Initialized page: ${currentPage}`)
