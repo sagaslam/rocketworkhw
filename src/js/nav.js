@@ -1,7 +1,7 @@
 // nav.js
 import { initBreakpoints, onBreakpoint } from './breakpointsConfig.js'
-import browser from '@js/browser.min.js'
-import '@js/jquery.min.js'
+//import browser from '@js/browser.min.js'
+//import '@js/jquery.min.js'
 
 export function initNav() {
   //const $window = $(window)

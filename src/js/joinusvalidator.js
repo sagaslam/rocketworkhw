@@ -1,26 +1,26 @@
-class ContactUsValidator {
+class JoinUsValidator {
   // Private fields (ES6+)
   #form
   #fields = {}
   #errorElements = {}
-  #charCount
   #successMessage
-  SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbxtPFNpYgFAYdHH-iuzLwpNbAwRJ8h7SWM7PQnJaeQKpx5njqRGygFYROKuiySsOtmu5g/exec'
+  #submitBtn
 
-  // Validation rules using Map
+  SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_URL_HERE/exec'
+
+  // Validation rules using Map for HW Rocket Works form
   #validationRules = new Map([
     [
       'name',
       {
         required: true,
         minLength: 2,
-        maxLength: 50,
+        maxLength: 100,
         pattern: /^[a-zA-Z\s'-]+$/,
         messages: {
           required: 'Full name is required',
           minLength: 'Name must be at least 2 characters long',
-          maxLength: 'Name must be less than 50 characters',
+          maxLength: 'Name must be less than 100 characters',
           pattern:
             'Name can only contain letters, spaces, hyphens, and apostrophes'
         }
@@ -38,15 +38,86 @@ class ContactUsValidator {
       }
     ],
     [
-      'message',
+      'year',
       {
         required: true,
-        minLength: 10,
+        messages: {
+          required: 'Please select your year/stage'
+        }
+      }
+    ],
+    [
+      'discipline',
+      {
+        required: true,
+        minLength: 2,
+        maxLength: 200,
+        messages: {
+          required: 'Discipline is required',
+          minLength: 'Discipline must be at least 2 characters long',
+          maxLength: 'Discipline must be less than 200 characters'
+        }
+      }
+    ],
+    [
+      'positions',
+      {
+        type: 'checkbox',
+        required: true,
+        minChecked: 1,
+        maxChecked: 7,
+        selector: 'input[name="positions"]',
+        containerSelector: '.checkbox-group',
+        messages: {
+          required: "Please select at least one position you're interested in",
+          minChecked: 'Please select at least 1 position',
+          maxChecked: 'Please select no more than 7 positions'
+        }
+      }
+    ],
+    [
+      'whyJoin',
+      {
+        required: true,
+        minLength: 20,
+        maxLength: 1000,
+        messages: {
+          required: 'Please explain why you want to join',
+          minLength: 'Please provide at least 20 characters',
+          maxLength: 'Response must be less than 1000 characters'
+        }
+      }
+    ],
+    [
+      'experience',
+      {
+        required: true,
+        minLength: 20,
+        maxLength: 1000,
+        messages: {
+          required: 'Please describe your experience and skills',
+          minLength: 'Please provide at least 20 characters',
+          maxLength: 'Response must be less than 1000 characters'
+        }
+      }
+    ],
+    [
+      'additionalInfo',
+      {
+        required: false,
         maxLength: 500,
         messages: {
-          required: 'Message is required',
-          minLength: 'Message must be at least 10 characters long',
-          maxLength: 'Message must be less than 500 characters'
+          maxLength: 'Additional information must be less than 500 characters'
+        }
+      }
+    ],
+    [
+      'adjustments',
+      {
+        required: false,
+        maxLength: 500,
+        messages: {
+          maxLength: 'Adjustments information must be less than 500 characters'
         }
       }
     ]
@@ -57,17 +128,25 @@ class ContactUsValidator {
     this.#bindEvents()
   }
 
-  // Initialize DOM elements using destructuring and modern selectors
+  // Initialize DOM elements using modern selectors
   #initializeElements() {
-    this.#form = document.querySelector('#contactForm')
+    this.#form = document.querySelector('#joinusForm')
     this.#successMessage = document.querySelector('#successMessage')
-    this.#charCount = document.querySelector('#charCount')
+    this.#submitBtn = this.#form?.querySelector('.submit-btn')
 
-    // Use destructuring to assign fields and error elements
-    const fieldIds = ['name', 'email', 'message']
+    // Initialize form fields (exclude checkbox groups as they're handled separately)
+    const fieldIds = [
+      'fullName',
+      'email',
+      'year',
+      'discipline',
+      'whyJoin',
+      'experience',
+      'additionalInfo',
+      'adjustments'
+    ]
     fieldIds.forEach((id) => {
       this.#fields[id] = document.querySelector(`#${id}`)
-      this.#errorElements[id] = document.querySelector(`#${id}Error`)
     })
   }
 
@@ -75,28 +154,49 @@ class ContactUsValidator {
   #bindEvents() {
     this.#form?.addEventListener('submit', this.#handleSubmit)
 
-    // Real-time validation with object destructuring
+    // Real-time validation
     Object.entries(this.#fields).forEach(([name, field]) => {
       field?.addEventListener('blur', () => this.#validateField(name))
-      field?.addEventListener('input', () => this.#clearValidation(field))
+      field?.addEventListener('input', () => this.#clearFieldError(field))
     })
+    // Add change events for checkbox groups
+    this.#bindCheckboxEvents()
+  }
 
-    // Special handling for message field
-    this.#fields.message?.addEventListener('input', this.#updateCharCount)
+  #bindCheckboxEvents() {
+    // Get all checkbox validation rules
+    const checkboxRules = Array.from(this.#validationRules.entries()).filter(
+      ([_, rules]) => rules.type === 'checkbox'
+    )
+
+    checkboxRules.forEach(([fieldName, rules]) => {
+      const checkboxes = document.querySelectorAll(rules.selector)
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', () =>
+          this.#validateField(fieldName)
+        )
+      })
+    })
   }
 
   // Generic field validation using modern syntax
   #validateField = (fieldName) => {
-    const field = this.#fields[fieldName]
-    const errorElement = this.#errorElements[fieldName]
     const rules = this.#validationRules.get(fieldName)
+    if (!rules) return true
 
-    if (!field || !rules) return false
+    // Handle checkbox validation separately
+    if (rules.type === 'checkbox') {
+      return this.#validateCheckboxGroup(fieldName, rules)
+    }
+
+    // Handle regular field validation
+    const field = this.#fields[fieldName]
+    if (!field) return true
 
     const value = field.value.trim()
     const { required, minLength, maxLength, pattern, messages } = rules
 
-    // Use nullish coalescing operator for default values
+    // Validation checks
     const validationChecks = [
       { condition: required && !value, message: messages.required },
       {
@@ -113,57 +213,147 @@ class ContactUsValidator {
       }
     ]
 
-    // Find first failing validation using optional chaining
+    // Find first failing validation
     const failedCheck = validationChecks.find((check) => check.condition)
 
     if (failedCheck) {
-      this.#showError(field, errorElement, failedCheck.message)
+      this.#showFieldError(field, failedCheck.message)
       return false
     }
 
-    this.#showSuccess(field, errorElement)
+    this.#showFieldSuccess(field)
     return true
   }
 
-  // Update character count with template literals and modern conditional logic
-  #updateCharCount = () => {
-    const { length } = this.#fields.message.value
-    const maxLength = 500
+  // Generic checkbox group validation
+  #validateCheckboxGroup = (fieldName, rules) => {
+    const {
+      required,
+      minChecked = 1,
+      maxChecked,
+      selector,
+      containerSelector,
+      messages
+    } = rules
 
-    this.#charCount.textContent = `${length} / ${maxLength}`
+    // Get checked checkboxes using the provided selector
+    const checkedBoxes = document.querySelectorAll(`${selector}:checked`)
+    const checkedCount = checkedBoxes.length
 
-    // Use modern conditional assignment
-    this.#charCount.className = `char-count ${
-      length > 450 ? 'error' : length > 400 ? 'warning' : ''
-    }`.trim()
+    let errorMessage = null
+
+    // Validation logic
+    if (required && checkedCount === 0) {
+      errorMessage =
+        messages.required ||
+        messages.minChecked ||
+        `Please select at least ${minChecked} option(s)`
+    } else if (minChecked && checkedCount < minChecked) {
+      errorMessage =
+        messages.minChecked || `Please select at least ${minChecked} option(s)`
+    } else if (maxChecked && checkedCount > maxChecked) {
+      errorMessage =
+        messages.maxChecked ||
+        `Please select no more than ${maxChecked} option(s)`
+    }
+
+    // Handle error display
+    const container = containerSelector
+      ? document.querySelector(containerSelector)
+      : null
+
+    if (errorMessage) {
+      this.#showCheckboxError(container, errorMessage)
+      return false
+    } else {
+      this.#showCheckboxSuccess(container)
+      return true
+    }
   }
 
-  // Show error using modern DOM manipulation
-  #showError = (field, errorElement, message) => {
+  // Show checkbox group error
+  #showCheckboxError = (container, message) => {
+    if (container) {
+      container.classList.add('error')
+
+      // Create or update error element
+      let errorElement =
+        container.querySelector('.checkbox-error') ||
+        container.parentNode.querySelector('.checkbox-error')
+
+      if (!errorElement) {
+        errorElement = document.createElement('div')
+        errorElement.className = 'checkbox-error field-error'
+        container.parentNode.insertBefore(errorElement, container.nextSibling)
+      }
+
+      errorElement.textContent = message
+      errorElement.style.display = 'block'
+    }
+  }
+
+  // Show checkbox group success
+  #showCheckboxSuccess = (container) => {
+    if (container) {
+      container.classList.remove('error')
+
+      const errorElement =
+        container.querySelector('.checkbox-error') ||
+        container.parentNode.querySelector('.checkbox-error')
+      if (errorElement) {
+        errorElement.style.display = 'none'
+      }
+    }
+  }
+
+  // Show field-specific error
+  #showFieldError = (field, message) => {
     field.classList.add('input-error')
     field.classList.remove('input-valid')
+
+    // Create or update error element
+    let errorElement = field.parentNode.querySelector('.field-error')
+    if (!errorElement) {
+      errorElement = document.createElement('div')
+      errorElement.className = 'field-error'
+      field.parentNode.appendChild(errorElement)
+    }
     errorElement.textContent = message
-    errorElement.classList.add('show')
+    errorElement.style.display = 'block'
   }
 
-  // Show success state
-  #showSuccess = (field, errorElement) => {
+  // Show field success state
+  #showFieldSuccess = (field) => {
     field.classList.remove('input-error')
     field.classList.add('input-valid')
-    errorElement.classList.remove('show')
+
+    const errorElement = field.parentNode.querySelector('.field-error')
+    if (errorElement) {
+      errorElement.style.display = 'none'
+    }
   }
 
-  // Clear validation state
-  #clearValidation = (field) => {
+  // Clear field validation state
+  #clearFieldError = (field) => {
     field.classList.remove('input-error', 'input-valid')
+    const errorElement = field.parentNode.querySelector('.field-error')
+    if (errorElement) {
+      errorElement.style.display = 'none'
+    }
   }
 
-  // Handle form submission with async-like pattern
+  // Show general error message
+  #showError = (message) => {
+    alert(message) // Can be replaced with a custom error display
+  }
+
+  // Handle form submission
   #handleSubmit = (e) => {
     e.preventDefault()
 
-    // Validate all fields using array methods
-    const validationResults = Object.keys(this.#fields).map((fieldName) => ({
+    // Validate all fields including checkboxes
+    const allFieldNames = Array.from(this.#validationRules.keys())
+    const validationResults = allFieldNames.map((fieldName) => ({
       fieldName,
       isValid: this.#validateField(fieldName)
     }))
@@ -173,120 +363,180 @@ class ContactUsValidator {
     if (allValid) {
       this.#submitForm()
     } else {
-      // Focus on first invalid field using find method
+      // Focus on first invalid field (skip checkbox groups)
       const firstInvalidField = validationResults.find(
-        ({ isValid }) => !isValid
+        ({ isValid, fieldName }) => !isValid && this.#fields[fieldName]
       )?.fieldName
 
-      this.#fields[firstInvalidField]?.focus()
+      if (firstInvalidField && this.#fields[firstInvalidField]) {
+        this.#fields[firstInvalidField].focus()
+      }
     }
   }
 
-  // Simulate async form submission using Promises
+  // Submit form with async handling
   #submitForm = async () => {
-    const submitBtn = this.#form.querySelector('.submit-btn')
-    const originalText = submitBtn.textContent
+    const originalText = this.#submitBtn.textContent
 
-    // Simulate loading state
-    submitBtn.textContent = 'Sending...'
-    submitBtn.disabled = true
+    // Show loading state
+    this.#submitBtn.textContent = 'Submitting...'
+    this.#submitBtn.disabled = true
 
-    // Send POST request with URL-encoded data
-    fetch(
-      'https://script.google.com/macros/s/AKfycbxj2UiK940T_TAY9IHKxcyJGynrhFQCrerfa3sqS5dUgOZJk_EfzfzQgB_GGroW4H1spg/exec',
-
-      {
-        method: 'POST',
-        body: this.getFormData1()
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          document.getElementById('responseMessage').textContent =
-            'Thank you! Your message has been sent.'
-          //this.#resetForm()
-        } else {
-          throw new Error('Network response was not ok.')
-        }
-      })
-      .catch((error) => {
-        document.getElementById('responseMessage').textContent =
-          'Error: Your message could not be sent.'
-      })
-      .finally(() => {
-        // Reset button state
-        submitBtn.textContent = originalText
-        submitBtn.disabled = false
-      })
-
-    /*
     try {
-      // Simulate API call with Promise
+      // Simulate form submission - replace with actual endpoint
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      // Reset form and show success
-      this.#resetForm()
+      // Get form data for logging/processing
+      const formData = this.getFormData()
+      console.log('Form submitted with data:', formData)
+
+      // Show success and reset form
       this.#showSuccessMessage()
+      this.#resetForm()
     } catch (error) {
       console.error('Submission failed:', error)
-
-*/
+      this.#showError('Submission failed. Please try again.')
+    } finally {
+      // Reset button state
+      this.#submitBtn.textContent = originalText
+      this.#submitBtn.disabled = false
+    }
   }
 
   // Reset form with modern methods
   #resetForm = () => {
     this.#form.reset()
-    this.#charCount.textContent = '0 / 500'
-    this.#charCount.className = 'char-count'
 
-    // Clear validation states using Object.values
+    // Clear validation states
     Object.values(this.#fields).forEach((field) => {
       field.classList.remove('input-error', 'input-valid')
+      const errorElement = field.parentNode.querySelector('.field-error')
+      if (errorElement) {
+        errorElement.style.display = 'none'
+      }
     })
+
+    // Clear checkbox validation
+    document.querySelector('.checkbox-group')?.classList.remove('error')
   }
 
   // Show success message with timeout
   #showSuccessMessage = () => {
-    this.#successMessage.classList.add('show')
+    this.#successMessage.style.display = 'block'
 
-    // Auto-hide after 5 seconds using arrow function
+    // Scroll to show success message
+    document
+      .querySelector('.form-container')
+      .scrollIntoView({ behavior: 'smooth' })
+
+    // Auto-hide after 5 seconds
     setTimeout(() => {
-      this.#successMessage.classList.remove('show')
+      this.#successMessage.style.display = 'none'
     }, 5000)
   }
 
-  // Public method to manually validate form (if needed)
+  // Public method to manually validate form
   validateAll() {
-    return Object.keys(this.#fields).every((fieldName) =>
-      this.#validateField(fieldName)
-    )
+    const allFieldNames = Array.from(this.#validationRules.keys())
+    return allFieldNames.every((fieldName) => this.#validateField(fieldName))
   }
 
   // Public method to get form data as object
   getFormData() {
-    return Object.fromEntries(
+    const data = Object.fromEntries(
       Object.entries(this.#fields).map(([name, field]) => [
         name,
         field.value.trim()
       ])
     )
+
+    // Add checkbox group data
+    const checkboxRules = Array.from(this.#validationRules.entries()).filter(
+      ([_, rules]) => rules.type === 'checkbox'
+    )
+
+    checkboxRules.forEach(([fieldName, rules]) => {
+      const checkedBoxes = document.querySelectorAll(
+        `${rules.selector}:checked`
+      )
+      data[fieldName] = Array.from(checkedBoxes).map((cb) => cb.value)
+    })
+
+    return data
   }
 
-  getFormData1() {
+  // Get form data for URL encoding (if needed for API submission)
+  getFormDataEncoded() {
     const data = new URLSearchParams()
-    data.append('name', this.#form.name.value)
-    data.append('email', this.#form.email.value)
-    data.append('message', this.#form.message.value)
+    const formData = this.getFormData()
+
+    Object.entries(formData).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        data.append(key, value.join(', '))
+      } else {
+        data.append(key, value)
+      }
+    })
+
     return data
   }
 }
 
-// Initialize using modern async DOM loading
-//document.addEventListener('DOMContentLoaded', () => {
-// const validator = new FormValidator()
+// Additional CSS for error states
+const errorStyles = `
+            .input-error {
+                border-color: #e74c3c !important;
+                box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1) !important;
+            }
+            
+            .input-valid {
+                border-color: #27ae60 !important;
+                box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1) !important;
+            }
+            
+            .field-error {
+                color: #e74c3c;
+                font-size: 14px;
+                margin-top: 5px;
+                display: none;
+            }
+            
+            .checkbox-group.error {
+                border: 2px solid #e74c3c;
+                border-radius: 10px;
+                padding: 15px;
+                margin-top: 10px;
+            }
+        `
 
-// Make validator available globally for debugging (optional)
-//window.formValidator = validator
-//})
+// Inject error styles
+const styleSheet = document.createElement('style')
+styleSheet.textContent = errorStyles
+document.head.appendChild(styleSheet)
 
-export default ContactUsValidator
+// Initialize validator when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  //const validator = new JoinUsValidator()
+
+  // Make validator available globally for debugging (optional)
+  window.JoinUsValidator = new JoinUsValidator()
+})
+
+// Add hover effects to checkbox items
+// document.querySelectorAll('.checkbox-item').forEach((item) => {
+//   item.addEventListener('click', function () {
+//     const checkbox = this.querySelector('input[type="checkbox"]')
+//     if (checkbox) {
+//       checkbox.checked = !checkbox.checked
+//     }
+//   })
+// })
+
+// Prevent double-clicking on checkboxes
+document
+  .querySelectorAll('.checkbox-item input[type="checkbox"]')
+  .forEach((checkbox) => {
+    checkbox.addEventListener('click', function (e) {
+      e.stopPropagation()
+    })
+  })

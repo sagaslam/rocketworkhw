@@ -10,21 +10,8 @@
     <link rel="stylesheet" href="/src/assets/styles/main.scss" />
   </head>
   <body data-page="joinus" class="is-preload">
-    <div id="wrapper" class="fade-in">
-      <div id="intro">
-        <img src="/src/assets/images/rocketworkslogo.png" />
-        <p>Ignite Your Potential</p>
-        <ul class="actions">
-          <li>
-            <a
-              id="continueButton"
-              href="#header"
-              class="button icon solid solo fa-arrow-down scrolly"
-              >Continue</a
-            >
-          </li>
-        </ul>
-      </div>
+    <div id="wrapper" >
+
 
       <header id="header">
         <a href="/index.html" class="logo">ROCKET WORKS</a>
@@ -57,32 +44,16 @@
             engineering project.
           </p>
 
-          <form id="rocketForm">
+          <form id="joinusForm">
             <div class="fields">
               <div class="field">
-                <label for="name">Name *</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  minlength="2"
-                  maxlength="50"
-                  autocomplete="name"
-                />
-                <div class="error-message" id="nameError"></div>
+                <label for="name">Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required />
               </div>
 
               <div class="field">
-                <label for="email">Email *</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  autocomplete="email"
-                />
-                <div class="error-message" id="emailError"></div>
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required />
               </div>
 
               <div class="field">
@@ -104,8 +75,7 @@
 
               <div class="field">
                 <label for="discipline"
-                  >HW University Discipline (Your course of study)
-                  <span class="required">*</span></label
+                  >Heriot-Watt University Discipline *</label
                 >
                 <input
                   type="text"
@@ -117,7 +87,7 @@
               </div>
 
               <div class="field">
-                <label>List Positions <span class="required">*</span></label>
+                <label>What areas interest you *</span></label>
                 <div class="checkbox-group">
                   <div class="checkbox-item">
                     <input
@@ -194,8 +164,6 @@
                   id="whyJoin"
                   name="whyJoin"
                   required
-                  minlength="10"
-                  maxlength="500"
                   placeholder="Tell us about your passion for rocketry and what motivates you to join our team..."
                 ></textarea>
               </div>
@@ -209,8 +177,6 @@
                   id="experience"
                   name="experience"
                   required
-                  minlength="10"
-                  maxlength="500"
                   placeholder="Describe your relevant experience, technical skills, projects, or any other qualifications..."
                 ></textarea>
               </div>
@@ -239,13 +205,9 @@
                 ></textarea>
               </div>
             </div>
-
-            <ul class="actions">
-              <li>
-                <input type="submit" value="Send Message" class="submit-btn" />
-              </li>
-            </ul>
-            <div id="responseMessage" class="message"></div>
+            <button type="submit" class="submit-btn">
+              Submit Application 🚀
+            </button>
           </form>
         </section>
       </div>
@@ -254,5 +216,6 @@
     </div>
     <!-- Scripts -->
     <script type="module" src="/main.js"></script>
+    <script type="module" src="/src/js/joinusvalidator.js"></script>
   </body>
 </html>

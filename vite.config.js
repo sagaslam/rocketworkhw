@@ -58,12 +58,8 @@ export default defineConfig({
           @import '@styles/libs/fixed-grid';
           @import '@styles/fontawesome-all.min.css';
           @import url('https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900');
-          
+          @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');    
 
-        
-        
-        
-        
         `
       }
     }

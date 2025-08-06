@@ -2,60 +2,63 @@
 
 import { initBreakpoints } from '@js/breakpointsConfig.js'
 import browser from '@js/browser.min.js'
-import '@js/jquery.min.js'
 
 export function initParallax(wrapper) {
-  const $window = $(window)
-  const $wrapper = $(wrapper)
+  const wrapperEl =
+    typeof wrapper === 'string' ? document.querySelector(wrapper) : wrapper
+  if (!wrapperEl) return
 
   initBreakpoints()
 
-  $.fn._parallax = function (intensity = 0.25) {
-    if ($wrapper.length === 0 || intensity === 0) return $wrapper
-    if ($wrapper.length > 1) {
-      $wrapper.each(function () {
-        $($wrapper)._parallax(intensity)
-      })
-      return $wrapper
+  function applyParallax(intensity = 0.25) {
+    if (!wrapperEl || intensity === 0) return
+
+    const bg = document.createElement('div')
+    bg.className = 'bg'
+    wrapperEl.appendChild(bg)
+
+    const updateParallax = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop
+      const offsetTop = wrapperEl.getBoundingClientRect().top + scrollTop
+      const pos = scrollTop - offsetTop
+      bg.style.transform = `matrix(1,0,0,1,0,${pos * intensity})`
     }
 
-    return $wrapper.each(function () {
-      const $el = $(wrapper)
-      const $bg = $('<div class="bg"></div>').appendTo($el)
+    const enableParallax = () => {
+      bg.classList.remove('fixed')
+      bg.style.transform = 'matrix(1,0,0,1,0,0)'
+      window.addEventListener('scroll', updateParallax)
+    }
 
-      const on = () => {
-        $bg.removeClass('fixed').css('transform', 'matrix(1,0,0,1,0,0)')
-        $window.on('scroll._parallax', () => {
-          const pos =
-            parseInt($window.scrollTop()) - parseInt($el.position().top)
-          $bg.css('transform', `matrix(1,0,0,1,0,${pos * intensity})`)
-        })
-      }
+    const disableParallax = () => {
+      bg.classList.add('fixed')
+      bg.style.transform = 'none'
+      window.removeEventListener('scroll', updateParallax)
+    }
 
-      const off = () => {
-        $bg.addClass('fixed').css('transform', 'none')
-        $window.off('scroll._parallax')
-      }
+    // Disable on IE, Edge, mobile or high DPI
+    if (
+      browser.name === 'ie' ||
+      browser.name === 'edge' ||
+      window.devicePixelRatio > 1 ||
+      browser.mobile
+    ) {
+      disableParallax()
+    } else {
+      breakpoint.on('>large', enableParallax)
+      breakpoint.on('<=large', disableParallax)
+    }
 
-      if (
-        browser.name === 'ie' ||
-        browser.name === 'edge' ||
-        window.devicePixelRatio > 1 ||
-        browser.mobile
-      ) {
-        off()
-      } else {
-        breakpoint.on('>large', on)
-        breakpoint.on('<=large', off)
-      }
+    const triggerScroll = () => {
+      updateParallax()
+    }
 
-      $window
-        .off('load._parallax resize._parallax')
-        .on('load._parallax resize._parallax', () => {
-          $window.trigger('scroll')
-        })
-    })
+    // Mimic jQuery's load/resize scroll trigger
+    window.removeEventListener('load', triggerScroll)
+    window.removeEventListener('resize', triggerScroll)
+    window.addEventListener('load', triggerScroll)
+    window.addEventListener('resize', triggerScroll)
   }
 
-  $wrapper._parallax(0.925)
+  applyParallax(0.925)
 }
