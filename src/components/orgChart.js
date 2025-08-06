@@ -1,5 +1,5 @@
 // orgChart.js - ES6 module for org chart using CDN libraries
-
+import orgpeople from '/src/data/rocketworksteam.csv?url'
 let chart
 
 const nodeContentTemplate = (d, i, arr, state) => {
@@ -11,7 +11,7 @@ const nodeContentTemplate = (d, i, arr, state) => {
         d.height - 32
       }px;padding-top:0px;background-color:white;border:1px solid lightgray;">
 
-        <img src="/src/assets/images/${d.data.imageUrl}" 
+        <img src="/images/${d.data.imageUrl}" 
              style="margin-top:-30px;margin-left:${
                d.width / 2 - 30
              }px;border-radius:100px;width:60px;height:60px;" />
@@ -68,7 +68,7 @@ const waitForLibraries = () => {
 const initOrgChart = async () => {
   try {
     console.log('Loading org chart data...')
-    const dataFlattened = await d3.csv('/src/data/rocketworksteam.csv')
+    const dataFlattened = await d3.csv(orgpeople)
     console.log('Data loaded:', dataFlattened)
 
     chart = new d3.OrgChart()
