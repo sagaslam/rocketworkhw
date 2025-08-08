@@ -5,8 +5,7 @@ class ContactUsValidator {
   #errorElements = {}
   #charCount
   #successMessage
-  SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbxtPFNpYgFAYdHH-iuzLwpNbAwRJ8h7SWM7PQnJaeQKpx5njqRGygFYROKuiySsOtmu5g/exec'
+  #scriptUrl
 
   // Validation rules using Map
   #validationRules = new Map([
@@ -53,6 +52,7 @@ class ContactUsValidator {
   ])
 
   constructor() {
+    this.#scriptUrl = import.meta.env.VITE_GOOGLE_CONTACTUS_URL
     this.#initializeElements()
     this.#bindEvents()
   }

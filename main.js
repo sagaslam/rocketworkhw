@@ -6,9 +6,10 @@ import { scrolly } from '@js/scrolly.js'
 
 import HeadManager from '@js/head-manager.js'
 import ContactUsValidator from '@js/contactusvalidator.js'
+import JoinUsValidator from '@js/JoinUsValidator.js'
 import { pageConfigs } from '@data/page-configs.js'
 import { createFooter } from '@components/footer.js'
-import { initOrgChart, waitForLibraries } from '@components/orgChart.js'
+import { initOrgChart } from '@components/orgChart.js'
 import { initParallax } from '@js/parallax.js'
 import { initIntro } from '@js/intro.js'
 import { initNavPanel } from '@js/navpanel.js'
@@ -40,10 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // only initialize org chart if current page is 'team'
   if (currentPage === 'team') {
-    // Initialize org chart after libraries are loaded
-    waitForLibraries().then(() => {
-      initOrgChart()
-    })
+    // Initialize org chart
+    initOrgChart()
+  }
+
+  // only initialize validation class if current page has'join us'
+  if (document.querySelector('#joinusForm')) {
+    window.JoinUsValidator = new JoinUsValidator()
   }
 
   // Initialise header and footer
@@ -65,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('is-preload')
   }, 100)
 
-  //$('.scrolly').scrolly()
   scrolly('.scrolly', {
     offset: 0, // adjust to your sticky header height
     speed: 300

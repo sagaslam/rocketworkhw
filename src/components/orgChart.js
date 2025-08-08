@@ -1,5 +1,9 @@
-// orgChart.js - ES6 module for org chart using CDN libraries
+// orgChart.js - ES6 module for org chart
+import * as d3 from 'd3'
+import { OrgChart } from 'd3-org-chart'
+import { flextree } from 'd3-flextree'
 import orgpeople from '/src/data/rocketworksteam.csv?url'
+
 let chart
 
 const nodeContentTemplate = (d, i, arr, state) => {
@@ -42,36 +46,13 @@ const nodeContentTemplate = (d, i, arr, state) => {
   `
 }
 
-// Utility function to ensure CDN libraries are loaded
-const waitForLibraries = () => {
-  return new Promise((resolve, reject) => {
-    const maxAttempts = 100 // Increased attempts
-    let attempts = 0
-
-    const checkLibraries = () => {
-      attempts++
-
-      if (typeof d3 !== 'undefined' && typeof d3.OrgChart !== 'undefined') {
-        console.log('D3 libraries loaded successfully')
-        resolve()
-      } else if (attempts >= maxAttempts) {
-        reject(new Error('D3 libraries failed to load within timeout'))
-      } else {
-        setTimeout(checkLibraries, 50) // Check every 50ms
-      }
-    }
-
-    checkLibraries()
-  })
-}
-
 const initOrgChart = async () => {
   try {
     console.log('Loading org chart data...')
     const dataFlattened = await d3.csv(orgpeople)
     console.log('Data loaded:', dataFlattened)
 
-    chart = new d3.OrgChart()
+    chart = new OrgChart()
       .container('.chart-container')
       .data(dataFlattened)
       .nodeWidth((d) => 250)
@@ -124,4 +105,4 @@ const destroyChart = () => {
   }
 }
 
-export { initOrgChart, getChart, updateChart, destroyChart, waitForLibraries }
+export { initOrgChart, getChart, updateChart, destroyChart }
