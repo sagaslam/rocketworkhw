@@ -9,9 +9,9 @@ export class Panel {
       hideOnSwipe = false,
       resetScroll = false,
       resetForms = false,
-      side = 'left',
+      side = 'right',
       target = document.body,
-      visibleClass = 'is-panel-visible'
+      visibleClass = 'is-navPanel-visible'
     } = {}
   ) {
     this.panel =
@@ -32,9 +32,9 @@ export class Panel {
 
   _init() {
     this.panel.setAttribute('aria-hidden', 'true')
-    this.panel.classList.add('panel', this.side)
+    //this.panel.classList.add('panel', this.side)
 
-    // Hide on outside click
+    // Hide on outside clicks
     if (this.hideOnClick) {
       this.panel.addEventListener('click', (e) => {
         if (e.target === this.panel) {
@@ -76,7 +76,7 @@ export class Panel {
   }
 
   show() {
-    this.panel.setAttribute('aria-hidden', 'false')
+    this.panel.setAttribute('aria-hidden', '')
     this.target.classList.add(this.visibleClass)
   }
 
