@@ -20,7 +20,7 @@ export default class GenericFormValidator {
   // Generic DOM element initialization
   #initializeElements(formSelector) {
     this.#form = document.querySelector(formSelector)
-    this.#successMessage = document.querySelector('#successMessage')
+    this.#successMessage = document.querySelector('#responseMessage')
     this.#submitBtn = this.#form?.querySelector('.submit-btn')
 
     // Initialize fields based on validation rules
@@ -61,12 +61,26 @@ export default class GenericFormValidator {
 
     checkboxRules.forEach(([fieldName, rules]) => {
       const checkboxes = document.querySelectorAll(rules.selector)
+
       checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', () =>
+        checkbox.addEventListener('change', () => {
           this.#validateField(fieldName)
-        )
+        })
+
+        checkbox.addEventListener('click', (e) => {
+          e.stopPropagation()
+        })
       })
     })
+
+    // checkboxRules.forEach(([fieldName, rules]) => {
+    //   const checkboxes = document.querySelectorAll(rules.selector)
+    //   checkboxes.forEach((checkbox) => {
+    //     checkbox.addEventListener('change', () =>
+    //       this.#validateField(fieldName)
+    //     )
+    //   })
+    // })
   }
 
   // Generic field validation
@@ -395,85 +409,6 @@ export default class GenericFormValidator {
   }
 }
 
-// need to update/amend contactus validator
-//  ================================
-// EXAMPLE: OTHER FORM VALIDATOR
-// ================================
-
-// class ContactFormValidator extends GenericFormValidator {
-//   constructor() {
-//     // Different validation rules for contact form
-//     const contactValidationRules = new Map([
-//       [
-//         'name',
-//         {
-//           required: true,
-//           minLength: 2,
-//           messages: {
-//             required: 'Name is required',
-//             minLength: 'Name must be at least 2 characters'
-//           }
-//         }
-//       ],
-//       [
-//         'email',
-//         {
-//           required: true,
-//           pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-//           messages: {
-//             required: 'Email is required',
-//             pattern: 'Please enter a valid email'
-//           }
-//         }
-//       ],
-//       [
-//         'message',
-//         {
-//           required: true,
-//           minLength: 10,
-//           maxLength: 500,
-//           messages: {
-//             required: 'Message is required',
-//             minLength: 'Message must be at least 10 characters',
-//             maxLength: 'Message must be less than 500 characters'
-//           }
-//         }
-//       ]
-//     ])
-
-//     super('#contactForm', contactValidationRules)
-//   }
-
-//   // Contact form specific submission
-//   async handleSubmission(formData) {
-//     console.log('Contact form submitted:', formData)
-
-//     // Send to contact API endpoint
-//     const response = await fetch('/api/contact', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(formData)
-//     })
-
-//     if (!response.ok) {
-//       throw new Error('Contact API request failed')
-//     }
-
-//     return response.json()
-//   }
-
-//   // Contact form customizations
-//   getLoadingText() {
-//     return 'Sending message...'
-//   }
-
-//   getErrorMessage(error) {
-//     return 'Failed to send message. Please try again or email us directly.'
-//   }
-// }
-
 // ================================
 // CSS STYLES (SHARED)
 // ================================
@@ -507,26 +442,3 @@ const errorStyles = `
 const styleSheet = document.createElement('style')
 styleSheet.textContent = errorStyles
 document.head.appendChild(styleSheet)
-
-// ================================
-// INITIALIZATION
-// ================================
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize JoinUs validator if form exists
-  // if (document.querySelector('#joinusForm')) {
-  //   window.JoinUsValidator = new JoinUsValidator()
-  // }
-  // Initialize Contact validator if form exists
-  // if (document.querySelector('#contactForm')) {
-  //   window.ContactValidator = new ContactFormValidator()
-  // }
-})
-
-// Generic checkbox interaction (shared)
-document
-  .querySelectorAll('.checkbox-item input[type="checkbox"]')
-  .forEach((checkbox) => {
-    checkbox.addEventListener('click', function (e) {
-      e.stopPropagation()
-    })
-  })

@@ -5,11 +5,11 @@ export const createFooter = () => {
           <form id="contactForm" novalidate>
             <div class="fields">
               <div class="field">
-                <label for="name">Name *</label>
+                <label for="fullName">Name *</label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
+                  id="fullName"
+                  name="fullName"
                   required
                   minlength="2"
                   maxlength="50"
@@ -46,12 +46,14 @@ export const createFooter = () => {
                 </div>
               </div>
             </div>
-            <ul class="actions">
-              <li>
-                <input type="submit" value="Send Message" class="submit-btn" />
-              </li>
-            </ul>
+            
+            <button type="submit" class="submit-btn">
+              Send Message
+            </button>
             <div id="responseMessage" class="message"></div>
+
+
+
           </form>
         </section>
         <section class="split contact">

@@ -146,17 +146,8 @@ export default class JoinUsValidator extends GenericFormValidator {
   async handleSubmission(formData) {
     console.log('JoinUs form submitted with data:', formData)
 
-    // Send to Google Sheets
-    //if (
-    //this.SCRIPT_URL !==
-    //'https://script.google.com/macros/s/YOUR_SCRIPT_URL_HERE/exec'
-    //) {
     const response = await this.sendToGoogleSheets(formData)
     const result = await response.json()
-    //} else {
-    // Simulate API call for demo
-    //await new Promise((resolve) => setTimeout(resolve, 1500))
-    //}
   }
 
   // JoinUs-specific customizations
@@ -166,7 +157,7 @@ export default class JoinUsValidator extends GenericFormValidator {
 
   async beforeSubmit() {
     // JoinUs-specific pre-submission logic
-    console.log('Preparing JoinUs submission...')
+    console.log('Preparing join us submission...')
   }
 
   async afterSubmitSuccess(formData) {

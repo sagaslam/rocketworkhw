@@ -1,11 +1,6 @@
-//import $ from 'jquery'
-//import 'jquery.scrollex'
-//import 'jquery.scrolly'
 import { scrolly } from '@js/scrolly.js'
-//import { scrollex } from '@js/scrollex.js'
-
 import HeadManager from '@js/head-manager.js'
-import ContactUsValidator from '@js/contactusvalidator.js'
+import ContactUsValidator from '@js/ContactUsValidator.js'
 import JoinUsValidator from '@js/JoinUsValidator.js'
 import { pageConfigs } from '@data/page-configs.js'
 import { createFooter } from '@components/footer.js'
@@ -14,21 +9,12 @@ import { initParallax } from '@js/parallax.js'
 import { initIntro } from '@js/intro.js'
 import { initNavPanel } from '@js/navpanel.js'
 import { createNavigation, setActiveMenuItem } from '@components/navigation.js'
-//import { initNav } from '@js/nav.js'
-//import '@js/jquery.min.js'
-//import '@js/jquery.scrollex.min.js'
-//import '@js/jquery.scrolly.min.js'
-//import '@js/util.js'
-
-//window.$ = $
-//window.jQuery = $
 
 // Initialize HeadManager
 const headManager = new HeadManager()
 
 document.addEventListener('DOMContentLoaded', () => {
   //const validator = new ContactUsValidator()
-  window.ContactUsValidator = new ContactUsValidator()
 
   // Get current page from body data attribute or URL
   const currentPage = document.body.dataset.page || 'home'
@@ -53,6 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialise header and footer
   document.getElementById('nav').innerHTML = createNavigation()
   document.getElementById('footer').innerHTML = createFooter()
+
+  // Ensure DOM is updated before running validator
+  //requestAnimationFrame(() => {
+  window.ContactUsValidator = new ContactUsValidator()
+  //})
 
   // Set menu active
   setActiveMenuItem(currentPage)
