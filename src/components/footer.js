@@ -60,7 +60,7 @@ export const createFooter = () => {
         <section class="split contact">
                   <section>
             <h3>Email</h3>
-            <p><a href="#">rocketry@hw.ac.uk</a></p>
+            <p><a href="#">rocketworks@hw.ac.uk</a></p>
           </section>
                 <section class="alt">
             <h3>Address</h3>
