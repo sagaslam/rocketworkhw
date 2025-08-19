@@ -8,6 +8,7 @@ import { initOrgChart } from '@components/orgChart.js'
 import { initParallax } from '@js/parallax.js'
 import { initIntro } from '@js/intro.js'
 import { initNavPanel } from '@js/navpanel.js'
+import { initTeamFilters } from '@js/team.js'
 import { createNavigation, setActiveMenuItem } from '@components/navigation.js'
 
 // Initialize HeadManager
@@ -28,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // only initialize org chart if current page is 'team'
   if (currentPage === 'team') {
     // Initialize org chart
-    initOrgChart()
+    //initOrgChart()
+    initTeamFilters()
   }
 
   // only initialize validation class if current page has'join us'
@@ -64,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   scrolly('.scrolly', {
     offset: 0, // adjust to your sticky header height
-    speed: 200
+    speed: 600
   })
 
   console.log(`Page config: ${pageConfig.title}`)
