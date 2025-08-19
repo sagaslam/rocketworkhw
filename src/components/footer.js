@@ -1,5 +1,6 @@
 export const createFooter = () => {
   return `
+   
       <footer id="footer">
         <section>
           <form id="contactForm" novalidate>
@@ -57,45 +58,33 @@ export const createFooter = () => {
           </form>
         </section>
         <section class="split contact">
-          <section class="alt">
+                  <section>
+            <h3>Email</h3>
+            <p><a href="#">rocketry@hw.ac.uk</a></p>
+          </section>
+                <section class="alt">
             <h3>Address</h3>
             <p>
               Heriot-Watt University<br />
               Edinburgh, EH14 4AS
             </p>
           </section>
-          <section>
-            <h3>Phone</h3>
-            <p><a href="#">(000) 000-0000</a></p>
-          </section>
-          <section>
-            <h3>Email</h3>
-            <p><a href="#">rocketry@hw.ac.uk</a></p>
-          </section>
+
           <section>
             <h3>Social</h3>
             <ul class="icons alt">
               <li>
-                <a href="#" class="icon brands alt fa-twitter"
-                  ><span class="label">Twitter</span></a
+                <a href="#" class="icon brands alt fa-linkedin"
+                  ><span class="label">Linkedin</span></a
                 >
               </li>
-              <li>
-                <a href="#" class="icon brands alt fa-facebook-f"
-                  ><span class="label">Facebook</span></a
-                >
-              </li>
+
               <li>
                 <a href="#" class="icon brands alt fa-instagram"
                   ><span class="label">Instagram</span></a
                 >
               </li>
-              <li>
-                <a href="#" class="icon brands alt fa-github"
-                  ><span class="label">GitHub</span></a
-                >
-              </li>
-            </ul>
+             </ul>
           </section>
         </section>
       </footer>

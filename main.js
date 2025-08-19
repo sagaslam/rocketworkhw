@@ -50,19 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initParallax(document.getElementById('wrapper'))
   initIntro(document.getElementById('main'))
-  //initNav()
   initNavPanel({
     navSelector: '#nav',
     panelId: 'navPanel',
     visibleClass: 'is-navPanel-visible'
   })
+
+  //document.body.classList.remove('is-preload')
+
   setTimeout(() => {
     document.body.classList.remove('is-preload')
   }, 100)
 
   scrolly('.scrolly', {
     offset: 0, // adjust to your sticky header height
-    speed: 300
+    speed: 200
   })
 
   console.log(`Page config: ${pageConfig.title}`)

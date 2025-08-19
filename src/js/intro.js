@@ -1,82 +1,55 @@
 // intro.js
 
 import { initBreakpoints, onBreakpoint } from './breakpointsConfig.js'
-//import browser from '@js/browser.min.js'
-//import '@js/jquery.min.js'
-import '@js/breakpoints.min.js'
-import { scrollex } from '@js/scrollex.js'
+import { scrollex, unscrollex } from '@js/scrollex.js'
 
-export function initIntro(main) {
-  //const window = window
-  const intro = document.querySelector('#intro')
-  //const main = document.querySelector('#main')
+export function initIntro() {
+  const introEl = document.querySelector('#intro')
+  const mainEl = document.querySelector('#main')
+
   initBreakpoints()
 
-  // If there's no intro section, bail out
-  if (!intro) return
+  if (!introEl || !mainEl) return
 
-  // IE-specific fix (only if browser is IE — optional detection)
-  if (navigator.userAgent.includes('Trident')) {
-    const handleResize = () => {
-      const introHeight = intro.offsetHeight
-      const windowHeight = window.innerHeight
-      intro.style.height =
-        introHeight > windowHeight ? 'auto' : `${introHeight}px`
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    // Trigger once immediately
-    handleResize()
+  // IE-specific fix for intro height
+  const handleIntroResize = () => {
+    const introHeight = introEl.offsetHeight
+    const windowHeight = window.innerHeight
+    introEl.style.height =
+      introHeight > windowHeight ? 'auto' : `${introHeight}px`
   }
 
-  onBreakpoint('>small', () => {
-    // Remove existing observer by replacing the element (cheap cleanup)
-    const newMain = document.querySelector('#main').cloneNode(true)
-    const intro = document.querySelector('#intro')
+  if (navigator.userAgent.includes('Trident')) {
+    window.addEventListener('resize', handleIntroResize)
+    handleIntroResize()
+  }
 
-    scrollex('newMain', {
+  // Helper to attach scrollex observers safely
+  const attachScrollex = (mode, topOffset, bottomOffset) => {
+    // Remove old observers
+    unscrollex(mainEl)
+
+    scrollex(mainEl, {
       mode: 'middle',
-      top: '25vh',
-      bottom: '-50vh',
-      enter: () => intro.classList.add('hidden'),
-      leave: () => intro.classList.remove('hidden')
+      top: topOffset,
+      bottom: bottomOffset,
+      enter: () => introEl.classList.add('hidden'),
+      leave: () => introEl.classList.remove('hidden')
     })
+  }
+
+  // Breakpoint-specific scrollex offsets
+  onBreakpoint('>small', () => {
+    attachScrollex('bottom', '25vh', '-50vh')
   })
 
   onBreakpoint('<=small', () => {
-    // Remove existing observer by replacing the element (cheap cleanup)
-    const newMain = document.querySelector('#main').cloneNode(true)
-    const intro = document.querySelector('#intro')
-
-    scrollex('newMain', {
-      mode: 'middle',
-      top: '15vh',
-      bottom: '-15vh',
-      enter: () => intro.classList.add('hidden'),
-      leave: () => intro.classList.remove('hidden')
-    })
+    attachScrollex('middle', '20vh', '-40vh')
   })
 
-  // onBreakpoint('>small', () => {
-  //   $main.unscrollex()
-  //   $main.scrollex({
-  //     mode: 'bottom',
-  //     top: '25vh',
-  //     bottom: '-50vh',
-  //     enter: () => $intro.addClass('hidden'),
-  //     leave: () => $intro.removeClass('hidden')
-  //   })
-  // })
-
-  // onBreakpoint('<=small', () => {
-  //   $main.unscrollex()
-  //   $main.scrollex({
-  //     mode: 'middle',
-  //     top: '15vh',
-  //     bottom: '-15vh',
-  //     enter: () => $intro.addClass('hidden'),
-  //     leave: () => $intro.removeClass('hidden')
-  //   })
-  // })
+  // Optional: keep IE height fix synced with breakpoints
+  if (navigator.userAgent.includes('Trident')) {
+    onBreakpoint('>small', handleIntroResize)
+    onBreakpoint('<=small', handleIntroResize)
+  }
 }

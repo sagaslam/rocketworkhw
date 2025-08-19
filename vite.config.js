@@ -1,5 +1,8 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
+import fg from 'fast-glob'
+
+const htmlFiles = fg.sync('src/pages/**/*.html')
 
 export default defineConfig({
   // Root directory
@@ -10,21 +13,16 @@ export default defineConfig({
 
   // Build configuration
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    sourcemap: true,
-
-    // Multi-page application configuration
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        // Pages from /pages directory
-        contact: resolve(__dirname, 'pages/contact.html'),
-        joinus: resolve(__dirname, 'pages/joinus.html'),
-        partners: resolve(__dirname, 'pages/partners.html'),
-        projects: resolve(__dirname, 'pages/projects.html'),
-        team: resolve(__dirname, 'pages/team.html')
-        // Add more pages as needed
+        index: resolve(__dirname, 'src/index.html'),
+        ...htmlFiles.reduce((entries, file) => {
+          const name = file
+            .replace(/^src\//, '') // strip src/
+            .replace(/\.html$/, '') // strip .html
+          entries[name] = resolve(__dirname, file)
+          return entries
+        }, {})
       }
     }
   },
@@ -50,17 +48,24 @@ export default defineConfig({
       scss: {
         additionalData: `
           @import '@styles/libs/_vars.scss';
-          @import '@styles/libs/functions';
-          @import '@styles/libs/mixins';
-          @import '@styles/libs/vendor';
-          @import '@styles/libs/breakpoints';
-          @import '@styles/libs/html-grid';
-          @import '@styles/libs/fixed-grid';
+          @import '@styles/libs/_functions';
+          @import '@styles/libs/_mixins';
+          @import '@styles/libs/_vendor';
+          @import '@styles/libs/_breakpoints';
+          @import '@styles/libs/_html-grid';
+          @import '@styles/libs/_fixed-grid';
           @import '@styles/fontawesome-all.min.css';
           @import url('https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900');
-          @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Michroma&display=auto');
 
-        `
+        `,
+
+        api: 'modern-compiler',
+
+        includePaths: ['src/assets/styles'],
+
+        // Option 4: Silence deprecation warnings
+        silenceDeprecations: ['legacy-js-api']
       }
     }
   },
@@ -70,15 +75,6 @@ export default defineConfig({
     port: 3000,
     open: true,
     host: true
-
-    // Proxy configuration if needed
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://localhost:8080',
-    //     changeOrigin: true,
-    //     rewrite: (path) => path.replace(/^\/api/, '')
-    //   }
-    // }
   },
 
   // Preview server (for build testing)
@@ -124,28 +120,3 @@ export default defineConfig({
     ]
   }
 })
-
-/* need to think about for later
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
-import { glob } from 'glob'
-
-// Auto-discover HTML pages
-const pages = Object.fromEntries(
-  glob.sync('pages/*.html').map(file => [
-    file.slice(6, -5), // Remove 'pages/' and '.html'
-    resolve(__dirname, file)
-  ])
-)
-
-export default defineConfig({
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        ...pages
-      }
-    }
-  }
-  // ... rest of config
-})*/

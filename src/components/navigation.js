@@ -6,6 +6,7 @@ export const createNavigation = () => {
           <li><a href="/pages/projects.html" data-page="projects">projects</a></li>
           <li><a href="/pages/partners.html" data-page="partners">partners</a></li>
           <li><a href="/pages/joinus.html" data-page="joinus">join us</a></li>
+          <li><a href="/pages/about.html" data-page="about">about us</a></li>
           <li><a href="/pages/team.html" data-page="team">team</a></li>
           <li><a href="/pages/contact.html" data-page="contactus">contact us</a></li>
         </ul>
