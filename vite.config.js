@@ -2,51 +2,51 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import fg from 'fast-glob'
 
-const htmlFiles = fg.sync('src/pages/**/*.html')
+export default defineConfig(async () => {
+  const files = await fg(['*.html', 'pages/**/*.html'], { cwd: __dirname })
 
-export default defineConfig({
-  // Root directory
-  root: '.',
+  // Build Rollup input
+  const input = Object.fromEntries(
+    files.map((file) => {
+      // Keep root HTML files at root, pages/* stay in pages/
+      const key = file.replace(/\.html$/, '')
+      return [key, resolve(__dirname, file)]
+    })
+  )
 
-  // Public directory for static assets
-  publicDir: 'public',
-
-  // Build configuration
-  build: {
-    rollupOptions: {
-      input: {
-        index: resolve(__dirname, 'src/index.html'),
-        ...htmlFiles.reduce((entries, file) => {
-          const name = file
-            .replace(/^src\//, '') // strip src/
-            .replace(/\.html$/, '') // strip .html
-          entries[name] = resolve(__dirname, file)
-          return entries
-        }, {})
+  return {
+    build: {
+      rollupOptions: {
+        input
       }
-    }
-  },
+    },
 
-  // Asset handling
-  assetsInclude: [
-    '**/*.png',
-    '**/*.jpg',
-    '**/*.jpeg',
-    '**/*.gif',
-    '**/*.svg',
-    '**/*.woff',
-    '**/*.woff2',
-    '**/*.ttf',
-    '**/*.eot'
-  ],
+    // Root directory
+    root: '.',
 
-  // CSS configuration
-  css: {
-    devSourcemap: true,
-    preprocessorOptions: {
-      // If you're using SCSS/Sass
-      scss: {
-        additionalData: `
+    // Public directory for static assets
+    publicDir: 'public',
+
+    // Asset handling
+    assetsInclude: [
+      '**/*.png',
+      '**/*.jpg',
+      '**/*.jpeg',
+      '**/*.gif',
+      '**/*.svg',
+      '**/*.woff',
+      '**/*.woff2',
+      '**/*.ttf',
+      '**/*.eot'
+    ],
+
+    // CSS configuration
+    css: {
+      devSourcemap: true,
+      preprocessorOptions: {
+        // If you're using SCSS/Sass
+        scss: {
+          additionalData: `
           @import '@styles/libs/_vars.scss';
           @import '@styles/libs/_functions';
           @import '@styles/libs/_mixins';
@@ -60,63 +60,64 @@ export default defineConfig({
 
         `,
 
-        api: 'modern-compiler',
+          api: 'modern-compiler',
 
-        includePaths: ['src/assets/styles'],
+          includePaths: ['src/assets/styles'],
 
-        // Option 4: Silence deprecation warnings
-        silenceDeprecations: ['legacy-js-api']
+          // Option 4: Silence deprecation warnings
+          silenceDeprecations: ['legacy-js-api']
+        }
       }
-    }
-  },
+    },
 
-  // Development server
-  server: {
-    port: 3000,
-    open: true,
-    host: true
-  },
+    // Development server
+    server: {
+      port: 3000,
+      open: true,
+      host: true
+    },
 
-  // Preview server (for build testing)
-  preview: {
-    port: 4173,
-    open: true
-  },
+    // Preview server (for build testing)
+    preview: {
+      port: 4173,
+      open: true
+    },
 
-  // Path resolution
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src'),
-      '@components': resolve(__dirname, 'src/components'),
-      '@assets': resolve(__dirname, 'src/assets'),
-      '@styles': resolve(__dirname, 'src/assets/styles'),
-      '@images': resolve(__dirname, 'src/assets/images'),
-      '@data': resolve(__dirname, 'src/data'),
-      '@utils': resolve(__dirname, 'src/utils'),
-      '@pages': resolve(__dirname, 'pages'),
-      '@js': resolve(__dirname, 'src/js')
-    }
-  },
+    // Path resolution
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, 'src'),
+        '@components': resolve(__dirname, 'src/components'),
+        '@assets': resolve(__dirname, 'src/assets'),
+        '@styles': resolve(__dirname, 'src/assets/styles'),
+        '@images': resolve(__dirname, 'src/assets/images'),
+        '@data': resolve(__dirname, 'src/data'),
+        '@utils': resolve(__dirname, 'src/utils'),
+        '@pages': resolve(__dirname, 'pages'),
+        '@js': resolve(__dirname, 'src/js')
+      }
+    },
 
-  // Plugin configuration
-  plugins: [
-    // Add plugins as needed
-    // Example: legacy browser support
-    // legacy({
-    //   targets: ['defaults', 'not IE 11']
-    // })
-  ],
-
-  // Environment variables
-  envPrefix: 'VITE_',
-
-  // Optimization
-  optimizeDeps: {
-    include: [
-      // Pre-bundle dependencies that should be optimized
+    // Plugin configuration
+    plugins: [
+      // Add plugins as needed
+      // Example: legacy browser support
+      // legacy({
+      //   targets: ['defaults', 'not IE 11']
+      // })
     ],
-    exclude: [
-      // Dependencies to exclude from optimization
-    ]
+
+    // Environment variables
+    envPrefix: 'VITE_',
+
+    // Optimization
+    optimizeDeps: {
+      include: [
+        // Pre-bundle dependencies that should be optimized
+      ],
+      exclude: [
+        // Dependencies to exclude from optimization
+      ]
+    }
   }
 })

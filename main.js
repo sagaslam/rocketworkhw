@@ -4,7 +4,7 @@ import ContactUsValidator from '@js/ContactUsValidator.js'
 import JoinUsValidator from '@js/JoinUsValidator.js'
 import { pageConfigs } from '@data/page-configs.js'
 import { createFooter } from '@components/footer.js'
-import { initOrgChart } from '@components/orgChart.js'
+
 import { initParallax } from '@js/parallax.js'
 import { initIntro } from '@js/intro.js'
 import { initNavPanel } from '@js/navpanel.js'

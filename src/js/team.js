@@ -11,19 +11,42 @@ export function initTeam() {
   const modalSocial = modal.querySelector('.modal-social')
   const closeBtn = modal.querySelector('.modal-close')
 
+  // Keep track of active roles
+  let activeRoles = []
+
   // Filter buttons
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const role = btn.dataset.role
-      buttons.forEach((b) => b.classList.remove('active'))
-      btn.classList.add('active')
 
-      members.forEach((member) => {
-        const roles = member.dataset.role.split(' ')
-        member.classList.toggle(
-          'hidden',
-          role !== 'all' && !roles.includes(role)
+      if (role === 'all') {
+        // Clicking "all" clears other selections
+        activeRoles = []
+        buttons.forEach((b) => b.classList.remove('active'))
+        btn.classList.add('active')
+      } else {
+        // Toggle the clicked role in activeRoles
+        if (activeRoles.includes(role)) {
+          activeRoles = activeRoles.filter((r) => r !== role)
+          btn.classList.remove('active')
+        } else {
+          activeRoles.push(role)
+          btn.classList.add('active')
+        }
+
+        // Ensure "all" is not active
+        const allBtn = document.querySelector(
+          '#team-section .team-filters button[data-role="all"]'
         )
+        if (allBtn) allBtn.classList.remove('active')
+      }
+
+      // Show/hide team members
+      members.forEach((member) => {
+        const roles = member.dataset.role.split(' ').map((r) => r.trim())
+        const show =
+          activeRoles.length === 0 || roles.some((r) => activeRoles.includes(r))
+        member.classList.toggle('hidden', !show)
       })
     })
   })
@@ -41,12 +64,12 @@ export function initTeam() {
       modalBio.textContent = member.dataset.bio || 'Bio not available.'
 
       // Clone social links
-      modalSocial.innerHTML = ''
-      member.querySelectorAll('.social a').forEach((link) => {
-        const cloned = link.cloneNode(true)
-        cloned.classList.add('modal-icon')
-        modalSocial.appendChild(cloned)
-      })
+      // modalSocial.innerHTML = ''
+      // member.querySelectorAll('.social a').forEach((link) => {
+      //   const cloned = link.cloneNode(true)
+      //   cloned.classList.add('modal-icon')
+      //   modalSocial.appendChild(cloned)
+      // })
 
       modal.classList.remove('hidden')
     })
