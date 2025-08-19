@@ -8,7 +8,7 @@ import { initOrgChart } from '@components/orgChart.js'
 import { initParallax } from '@js/parallax.js'
 import { initIntro } from '@js/intro.js'
 import { initNavPanel } from '@js/navpanel.js'
-import { initTeamFilters } from '@js/team.js'
+import { initTeam } from '@js/team.js'
 import { createNavigation, setActiveMenuItem } from '@components/navigation.js'
 
 // Initialize HeadManager
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (currentPage === 'team') {
     // Initialize org chart
     //initOrgChart()
-    initTeamFilters()
+    initTeam()
   }
 
   // only initialize validation class if current page has'join us'

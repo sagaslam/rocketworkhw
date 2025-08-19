@@ -19,7 +19,7 @@
 
       <!-- Main -->
       <div id="main">
-        <div id="team-section" class="align-center">
+        <section id="team-section">
           <header class="major">
             <h1>Meet Our Team</h1>
             <p>
@@ -38,52 +38,92 @@
           </div>
 
           <div class="team-grid">
-            <article class="team-member" data-role="executive">
-              <a class="image">
-                <img src="/images/ihsaanaslam.jpeg" alt="Ihsaan Aslamn" />
-              </a>
-              <div class="content">
+            <div
+              class="team-member"
+              data-role="executive engineering"
+              data-bio="Ihsaan has 10 years of experience in aerospace design, specialising in payload systems."
+              data-name="Ihsaan Aslam"
+            >
+              <div class="member-image">
+                <img src="/images/ihsaanaslam.jpeg" alt="Ihsaan Aslam" />
+              </div>
+              <div class="member-info">
                 <h4>Ihsaan Aslam</h4>
                 <h5>President</h5>
-                <a href="#" class="icon brands al fa-linkedin"
-                  ><span class="label">Linkedin</span></a
-                >
+                <div class="member-social">
+                  <a href="#" class="icon brands al fa-linkedin"
+                    ><span class="label">Linkedin</span></a
+                  >
+                </div>
               </div>
-            </article>
+            </div>
 
-            <article class="team-member" data-role="executive">
-              <a href="#" class="image">
+            <div
+              class="team-member"
+              data-role="engineering"
+              data-bio=""
+              data-name="William Lennox"
+            >
+              <div class="member-image">
                 <img src="/images/williamlennox.jpeg" alt="William Lennox" />
-              </a>
-              <div class="content">
+              </div>
+              <div class="member-info">
                 <h4>William Lennox</h4>
                 <h5>Vice-President</h5>
-                <a href="#" class="icon brands al fa-linkedin"
-                  ><span class="label">Linkedin</span></a
-                >
+                <div class="member-social">
+                  <a href="#" class="icon brands al fa-linkedin"
+                    ><span class="label">Linkedin</span></a
+                  >
+                </div>
               </div>
-            </article>
+            </div>
 
-            <article class="team-member" data-role="engineering">
-              <a href="#" class="image">
+            <div
+              class="team-member"
+              data-role="executive"
+              data-bio=""
+              data-name="Matthew Roberts"
+            >
+              <div class="member-image">
                 <img src="/images/matthewroberts.jpeg" alt="Matthew Roberts" />
-              </a>
-              <div class="content">
-                <h4>Matthew Roberts</h4>
-                <h5>Treasurer</h5>
-                <a href="#" class="icon brands al fa-linkedin"
-                  ><span class="label">Linkedin</span></a
-                >
               </div>
-            </article>
+              <div class="member-info">
+                <h4>Matthew Roberts</h4>
+                <h5>Vice-President</h5>
+                <div class="member-social">
+                  <a href="#" class="icon brands al fa-linkedin"
+                    ><span class="label">Linkedin</span></a
+                  >
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
 
       <!-- Footer -->
       <div id="footer"></div>
       <div class="bg"></div>
+
+      <!-- Modal -->
+      <div id="team-modal" class="modal hidden">
+        <div class="modal-content">
+          <span class="modal-close">&times;</span>
+
+          <div class="modal-image">
+            <img src="" alt="" />
+          </div>
+
+          <div class="modal-text">
+            <h4 class="modal-name"></h4>
+            <h5 class="modal-role"></h5>
+            <p class="modal-bio"></p>
+            <div class="modal-social"></div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <!-- Scripts -->
     <script type="module" src="/main.js"></script>
   </body>

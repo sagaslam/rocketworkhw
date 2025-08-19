@@ -1,140 +1,283 @@
-// src/assets/styles/team.scss
+/* ===========================
+   TEAM PAGE
+   =========================== */
 
-$primary-color: #1f7fff;
-$bg-color: #f4f4f4;
-
+/* Container */
 #team-section {
-  //padding: 5em 2em;
-  //background-color: $bg-color;
+  padding: 4em 2em;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 
-  // Filter buttons
-   .team-filters {
-  //   text-align: center;
+  h2 {
+    font-size: 2.5em;
+    margin-bottom: 1.5em;
+  }
+
+  /* Filters */
+  .team-filters {
     margin-bottom: 2em;
 
-  //   button {
-  //     background: #fff;
-  //     border: 1px solid #ccc;
-  //     margin: 0 0.5em 0.5em 0;
-  //     padding: 0.5em 1em;
-  //     border-radius: 4px;
-  //     cursor: pointer;
-  //     font-weight: bold;
-  //     transition: all 0.3s ease;
+    // button {
+    //   background: none;
+    //   border: 2px solid #ccc;
+    //   padding: 0.5em 1.2em;
+    //   margin: 0 0.4em 0.6em;
+    //   border-radius: 25px;
+    //   cursor: pointer;
+    //   font-size: 0.95em;
+    //   transition: all 0.2s ease;
 
-  //     &:hover {
-  //       background: $primary-color;
-  //       color: #fff;
-  //       border-color: $primary-color;
-  //     }
-
-  //     &.active {
-  //       background: $primary-color;
-  //       color: #fff;
-  //       border-color: $primary-color;
-  //     }
-  //   }
+    //   &:hover,
+    //   &.active {
+    //     background: #333;
+    //     color: #fff;
+    //     border-color: #333;
+    //   }
+    // }
   }
 
-  // Team grid
+  /* Grid Layout */
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2em;
+    justify-items: center;
+  }
+}
 
-    .team-member {
-      width: 250px;
-      height: 350px;
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: opacity 0.3s ease;
+/* ===========================
+   TEAM MEMBER CARD
+   =========================== */
+.team-member {
+  width: 260px;
+  height: 340px;
+  background: #222;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
 
-      &.hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      // Full-card image
-      .image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-
-          // Fade bottom
-          mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.1) 70%);
-          -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0.1) 100%);
-          mask-repeat: no-repeat;
-          mask-size: cover;
-          -webkit-mask-repeat: no-repeat;
-          -webkit-mask-size: cover;
-        }
-      }
-
-      // Content overlay
-      .content {
-        position: absolute;
-        bottom: 0;       // sticks content to the bottom
-        left: 0;
-        width: 100%;
-        //padding: 1em;
-        color: #fff;
-        background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); // fades into image above
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;  // ensures text aligns to bottom
-        align-items: center;
-
-  h3, h4, h5 {
-    margin:  0;
-    //font-size : 1rem
-    //text-align: left;
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
-
-        .social a {
-          margin: 0 0.25em;
-          color: #fff;
-          font-weight: bold;
-          transition: 0.3s;
-
-          &:hover {
-            color: lighten($primary-color, 10%);
-          }
-        }
-      }
-    }
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
   }
 
-  // Responsive adjustments
-  @media (max-width: 768px) {
-    .team-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
+  /* Image wrapper with gradient overlay */
+  .member-image {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
 
-    .team-member {
-      width: 200px;
-      height: 320px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .team-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .team-member {
+    img {
       width: 100%;
-      height: 300px;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 70%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 20%,
+        rgba(0, 0, 0, 0.9) 100%
+      );
+    }
+  }
+
+
+  
+  /* Content overlay (aligned to bottom) */
+  .member-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1em;
+    z-index: 2;
+
+    h3, h4, h5 {
+      margin: 0;
+      color: #fff;
+      line-height: 1.1em;
+      //font-size: 1.2em;
+    }
+
+    p.role {
+      margin: 0.2em 0 0;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    /* Social icons */
+    .member-social {
+      margin-top: 0.0em;
+      display: flex;
+      gap: 0.0em;
+
+      a {
+        color: #fff;
+        font-size: 1.2em;
+        transition: color 0.2s ease;
+
+        // &:hover {
+        //   color: #1da1f2; // Twitter blue as example
+        // }
+      }
+    }
+  }
+}
+
+/* ===========================
+   TEAM MODAL
+   =========================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1em;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+
+  &.hidden {
+    display: none;
+    opacity: 0;
+  }
+
+  .modal-content {
+    background: #111;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    animation: fadeInUp 0.35s ease both;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 0.5em;
+    right: 0.8em;
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.2);
+      color: #ccc;
+    }
+  }
+
+  .modal-image {
+    width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .modal-text {
+    padding: 1em;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    overflow-y: auto;
+
+    /* Hide scrollbars but allow scrolling */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    h3, h4, h5 {
+      margin: 0;
+      color: #fff;
+      line-height: 1.1em;
+      //font-size: 1.2em;
+    }
+
+
+    h3 {
+      margin: 0;
+      //font-size: 1.5em;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.2;
+      color: #ddd;
+    }
+
+    .modal-social {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5em;
+
+      a.modal-icon {
+        color: #fff;
+        margin: 0 0.4em;
+        font-size: 1.5em;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #1da1f2;
+        }
+
+        span.label {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
