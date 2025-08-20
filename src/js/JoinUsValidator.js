@@ -152,7 +152,7 @@ export default class JoinUsValidator extends GenericFormValidator {
 
   // JoinUs-specific customizations
   getLoadingText() {
-    return 'Joining HW Rocket Works...'
+    return 'Sending to HW Rocket Works...'
   }
 
   async beforeSubmit() {
@@ -162,6 +162,7 @@ export default class JoinUsValidator extends GenericFormValidator {
 
   async afterSubmitSuccess(formData) {
     // JoinUs-specific post-submission logic
+
     console.log('Welcome to HW Rocket Works!')
 
     // Could track analytics, send welcome email, etc.
@@ -169,9 +170,9 @@ export default class JoinUsValidator extends GenericFormValidator {
 
   getErrorMessage(error) {
     if (error.message.includes('Google Sheets')) {
-      return 'Failed to submit application. Please check your connection and try again.'
+      return 'Unable to submit application. Please try again or contact us by email.'
     }
-    return 'Application submission failed. Please try again or contact support.'
+    return 'Unable to submit application. Please try again or contact us by email'
   }
 
   // JoinUs-specific Google Sheets integration (if needed)
@@ -185,7 +186,9 @@ export default class JoinUsValidator extends GenericFormValidator {
     })
 
     if (!response.ok) {
-      throw new Error('Failed to submit to Google Sheets')
+      throw new Error(
+        'Unable to submit application. Please try again or contact us by email'
+      )
     }
 
     return response

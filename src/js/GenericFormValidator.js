@@ -348,10 +348,11 @@ export default class GenericFormValidator {
   // Generic success message display
   showSuccessMessage() {
     this.#successMessage.style.display = 'block'
+    this.#successMessage.textContent = 'Form submitted successfully!'
 
-    document.querySelector('.form-container')?.scrollIntoView({
-      behavior: 'smooth'
-    })
+    // this.#form?.scrollIntoView({
+    //   behavior: 'smooth'
+    // })
 
     setTimeout(() => {
       this.#successMessage.style.display = 'none'

@@ -21,6 +21,9 @@ export default defineConfig(async () => {
       }
     },
 
+    esbuild: {
+      drop: ['console', 'debugger']
+    },
     // Root directory
     root: '.',
 

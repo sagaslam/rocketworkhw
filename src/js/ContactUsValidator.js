@@ -100,7 +100,7 @@ export default class ContactUsValidator extends GenericFormValidator {
 
   // contact us specific customizations
   getLoadingText() {
-    return 'Contact HW Rocket Works...'
+    return 'Sending to HW Rocket Works...'
   }
 
   async beforeSubmit() {
@@ -117,9 +117,9 @@ export default class ContactUsValidator extends GenericFormValidator {
 
   getErrorMessage(error) {
     if (error.message.includes('Google Sheets')) {
-      return 'Failed to submit application. Please check your connection and try again.'
+      return 'Unable to submit application. Please try again or contact us by email.'
     }
-    return 'Application submission failed. Please try again or contact support.'
+    return 'Unable to submit application. Please try again or contact us by email.'
   }
 
   async sendToGoogleSheets(formData) {
@@ -132,7 +132,9 @@ export default class ContactUsValidator extends GenericFormValidator {
     })
 
     if (!response.ok) {
-      throw new Error('Failed to submit to Google Sheets')
+      throw new Error(
+        'Unable to submit application. Please try again or contact us by email.'
+      )
     }
 
     return response
