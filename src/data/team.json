@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Ihsaan Aslam",
+    "role": "President",
+    "roles": ["executive", "engineering"],
+    "bio": "Ihsaan has 10 years of experience in aerospace design, specialising in payload systems.",
+    "image": "/images/ihsaanaslam.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  },
+  {
+    "name": "William Lennox",
+    "role": "Vice-President",
+    "roles": ["executive", "engineering"],
+    "bio": "William leads our propulsion and structural engineering teams.",
+    "image": "/images/williamlennox.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  },
+  {
+    "name": "Matthew Roberts",
+    "role": "Treasurer",
+    "roles": ["executive"],
+    "bio": "Matthew manages budgets and fundraising efforts for our projects.",
+    "image": "/images/matthewroberts.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  },
+  {
+    "name": "Sophia Li",
+    "role": "Lead Engineer",
+    "roles": ["engineering"],
+    "bio": "Sophia specialises in spacecraft avionics and telemetry systems.",
+    "image": "/images/sophiali.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  },
+  {
+    "name": "Ethan Patel",
+    "role": "Structural Engineer",
+    "roles": ["engineering"],
+    "bio": "Ethan focuses on materials and structural integrity for payload modules.",
+    "image": "/images/ethanpatel.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  },
+  {
+    "name": "Ava Johnson",
+    "role": "Propulsion Specialist",
+    "roles": ["engineering"],
+    "bio": "Ava is responsible for testing and optimizing propulsion systems.",
+    "image": "/images/avajohnson.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  },
+  {
+    "name": "Liam Smith",
+    "role": "Marketing Lead",
+    "roles": ["marketing"],
+    "bio": "Liam manages outreach, social media, and communications strategy.",
+    "image": "/images/liamsmith.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  },
+  {
+    "name": "Emma Brown",
+    "role": "Outreach Coordinator",
+    "roles": ["marketing"],
+    "bio": "Emma connects with the community and manages STEM engagement events.",
+    "image": "/images/emmabrown.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  },
+  {
+    "name": "Noah Wilson",
+    "role": "Payload Specialist",
+    "roles": ["engineering"],
+    "bio": "Noah designs and tests payload systems for satellites and experiments.",
+    "image": "/images/noahwilson.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  },
+  {
+    "name": "Olivia Davis",
+    "role": "Project Manager",
+    "roles": ["executive", "marketing", "comms"],
+    "bio": "Olivia coordinates project timelines and team deliverables.",
+    "image": "/images/oliviadavis.jpeg",
+    "social": [
+      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+    ]
+  }
+]

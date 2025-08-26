@@ -1,8 +1,9 @@
+import teamMembers from '@data/team.json' assert { type: 'json' }
+
 export function initTeam() {
-  const buttons = document.querySelectorAll(
-    '#team-section .team-filters button'
-  )
-  const members = document.querySelectorAll('.team-member')
+  const teamGrid = document.querySelector('.team-grid')
+  const filterContainer = document.querySelector('.team-filters')
+
   const modal = document.getElementById('team-modal')
   const modalImage = modal.querySelector('.modal-image img')
   const modalName = modal.querySelector('.modal-name')
@@ -13,6 +14,64 @@ export function initTeam() {
 
   // Keep track of active roles
   let activeRoles = []
+
+  // --------------------------
+  // Build unique roles from JSON
+  // --------------------------
+  const rolesSet = new Set()
+  teamMembers.forEach((member) => member.roles.forEach((r) => rolesSet.add(r)))
+  const roles = Array.from(rolesSet).sort()
+
+  // Add "All" button first
+  const allBtn = document.createElement('button')
+  allBtn.textContent = 'All'
+  allBtn.classList.add('button', 'small', 'active')
+  allBtn.dataset.role = 'all'
+  filterContainer.appendChild(allBtn)
+
+  // Add buttons for each role
+  roles.forEach((role) => {
+    const btn = document.createElement('button')
+    btn.textContent = role.charAt(0).toUpperCase() + role.slice(1)
+    btn.classList.add('button', 'small')
+    btn.dataset.role = role
+    filterContainer.appendChild(btn)
+  })
+
+  // --------------------------
+  // Generate team cards from JSON
+  // --------------------------
+  teamMembers.forEach((member) => {
+    const card = document.createElement('div')
+    card.classList.add('team-member')
+    card.dataset.role = member.roles.join(' ')
+    card.dataset.bio = member.bio
+    card.dataset.name = member.name
+
+    card.innerHTML = `
+      <div class="member-image">
+        <img src="${member.image}" alt="${member.name}">
+      </div>
+      <div class="member-info">
+        <h4>${member.name}</h4>
+        <h5>${member.role}</h5>
+        <div class="member-social">
+          ${member.social
+            .map(
+              (s) =>
+                `<a href="${s.url}" class="icon ${s.icon}"><span class="label">${s.platform}</span></a>`
+            )
+            .join('')}
+        </div>
+      </div>
+    `
+    teamGrid.appendChild(card)
+  })
+
+  const buttons = document.querySelectorAll(
+    '#team-section .team-filters button'
+  )
+  const members = document.querySelectorAll('.team-member')
 
   // Filter buttons
   buttons.forEach((btn) => {
@@ -34,11 +93,16 @@ export function initTeam() {
           btn.classList.add('active')
         }
 
+        // Remove active from "All"
+        buttons.forEach((b) => {
+          if (b.dataset.role === 'all') b.classList.remove('active')
+        })
+
         // Ensure "all" is not active
-        const allBtn = document.querySelector(
-          '#team-section .team-filters button[data-role="all"]'
-        )
-        if (allBtn) allBtn.classList.remove('active')
+        // const allBtn = document.querySelector(
+        //   '#team-section .team-filters button[data-role="all"]'
+        // )
+        // if (allBtn) allBtn.classList.remove('active')
       }
 
       // Show/hide team members

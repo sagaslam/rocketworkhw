@@ -12,12 +12,12 @@ export default class ContactUsValidator extends GenericFormValidator {
         {
           required: true,
           minLength: 2,
-          maxLength: 50,
+          maxLength: 100,
           pattern: /^[a-zA-Z\s'-]+$/,
           messages: {
             required: 'Full name is required',
             minLength: 'Name must be at least 2 characters long',
-            maxLength: 'Name must be less than 50 characters',
+            maxLength: 'Name must be less than 100 characters',
             pattern:
               'Name can only contain letters, spaces, hyphens, and apostrophes'
           }
@@ -82,8 +82,8 @@ export default class ContactUsValidator extends GenericFormValidator {
 
   mapFieldNameToId(fieldName) {
     const fieldMapping = {
-      fullName: 'fullName',
-      email: 'email',
+      fullName: 'contactName',
+      email: 'contactEmail',
       message: 'message'
     }
 

@@ -6,7 +6,6 @@ export default class GenericFormValidator {
   // Private fields that any form validator needs
   #form
   #fields = {}
-  #errorElements = {}
   #successMessage
   #submitBtn
   #validationRules = new Map()
