@@ -73,7 +73,7 @@ export function initTeam() {
   )
   const members = document.querySelectorAll('.team-member')
 
-  // Filter buttons
+  // Filter buttons with mobile-optimized animation
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const role = btn.dataset.role
@@ -97,21 +97,77 @@ export function initTeam() {
         buttons.forEach((b) => {
           if (b.dataset.role === 'all') b.classList.remove('active')
         })
-
-        // Ensure "all" is not active
-        // const allBtn = document.querySelector(
-        //   '#team-section .team-filters button[data-role="all"]'
-        // )
-        // if (allBtn) allBtn.classList.remove('active')
       }
 
-      // Show/hide team members
+      // Animate team members with mobile-optimized batched updates
+      const membersToShow = []
+      const membersToHide = []
+
+      // First, categorize all members
       members.forEach((member) => {
         const roles = member.dataset.role.split(' ').map((r) => r.trim())
-        const show =
+        const shouldShow =
           activeRoles.length === 0 || roles.some((r) => activeRoles.includes(r))
-        member.classList.toggle('hidden', !show)
+
+        if (shouldShow) {
+          membersToShow.push(member)
+        } else {
+          membersToHide.push(member)
+        }
       })
+
+      // Force immediate cleanup of hidden items for mobile
+      members.forEach((member) => {
+        if (
+          member.classList.contains('hidden') &&
+          member.style.display === 'flex'
+        ) {
+          member.style.display = 'none'
+        }
+      })
+
+      // Batch hide animations first (faster)
+      membersToHide.forEach((member, index) => {
+        setTimeout(() => {
+          member.classList.remove('show')
+          member.classList.add('hidden')
+
+          // Immediate cleanup for mobile - no waiting
+          setTimeout(() => {
+            if (member.classList.contains('hidden')) {
+              member.style.display = 'none'
+              // Force grid reflow
+              member.parentElement.style.display = 'grid'
+            }
+          }, 400) // Faster cleanup
+        }, index * 20) // Faster hide stagger for mobile
+      })
+
+      // Then show animations (ensure proper positioning)
+      setTimeout(
+        () => {
+          membersToShow.forEach((member, index) => {
+            setTimeout(() => {
+              // Ensure it's ready to show
+              member.style.display = 'flex'
+
+              // Force a reflow before animation
+              member.offsetHeight
+
+              // Use requestAnimationFrame for smoother DOM updates
+              requestAnimationFrame(() => {
+                member.classList.remove('hidden')
+                member.classList.add('show')
+
+                setTimeout(() => {
+                  member.classList.remove('show')
+                }, 800)
+              })
+            }, index * 60) // Slightly faster show stagger
+          })
+        },
+        membersToHide.length > 0 ? 100 : 0
+      ) // Shorter wait time
     })
   })
 
@@ -147,4 +203,16 @@ export function initTeam() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal()
   })
+
+  // Initialize with 'All' selected and animate all cards in on page load
+  setTimeout(() => {
+    members.forEach((member, index) => {
+      setTimeout(() => {
+        member.classList.add('show')
+        setTimeout(() => {
+          member.classList.remove('show')
+        }, 800)
+      }, index * 120) // Slower stagger for initial load
+    })
+  }, 200) // Longer initial delay
 }
