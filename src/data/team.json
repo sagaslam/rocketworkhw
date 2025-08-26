@@ -4,9 +4,9 @@
     "role": "President",
     "roles": ["executive", "engineering"],
     "bio": "Ihsaan has 10 years of experience in aerospace design, specialising in payload systems.",
-    "image": "/images/ihsaanaslam.jpeg",
+    "image": "/images/ihsaanaslam.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
     ]
   },
   {
@@ -14,9 +14,9 @@
     "role": "Vice-President",
     "roles": ["executive", "engineering"],
     "bio": "William leads our propulsion and structural engineering teams.",
-    "image": "/images/williamlennox.jpeg",
+    "image": "/images/williamlennox.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
     ]
   },
   {
@@ -24,9 +24,9 @@
     "role": "Treasurer",
     "roles": ["executive"],
     "bio": "Matthew manages budgets and fundraising efforts for our projects.",
-    "image": "/images/matthewroberts.jpeg",
+    "image": "/images/matthewroberts.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
     ]
   },
   {
@@ -34,9 +34,9 @@
     "role": "Lead Engineer",
     "roles": ["engineering"],
     "bio": "Sophia specialises in spacecraft avionics and telemetry systems.",
-    "image": "/images/sophiali.jpeg",
+    "image": "/images/sophiali.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
     ]
   },
   {
@@ -44,9 +44,9 @@
     "role": "Structural Engineer",
     "roles": ["engineering"],
     "bio": "Ethan focuses on materials and structural integrity for payload modules.",
-    "image": "/images/ethanpatel.jpeg",
+    "image": "/images/ethanpatel.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
     ]
   },
   {
@@ -54,9 +54,9 @@
     "role": "Propulsion Specialist",
     "roles": ["engineering"],
     "bio": "Ava is responsible for testing and optimizing propulsion systems.",
-    "image": "/images/avajohnson.jpeg",
+    "image": "/images/avajohnson.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
     ]
   },
   {
@@ -64,9 +64,9 @@
     "role": "Marketing Lead",
     "roles": ["marketing"],
     "bio": "Liam manages outreach, social media, and communications strategy.",
-    "image": "/images/liamsmith.jpeg",
+    "image": "/images/liamsmith.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
     ]
   },
   {
@@ -74,9 +74,9 @@
     "role": "Outreach Coordinator",
     "roles": ["marketing"],
     "bio": "Emma connects with the community and manages STEM engagement events.",
-    "image": "/images/emmabrown.jpeg",
+    "image": "/images/emmabrown.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "brands alt fa-linkedin" }
     ]
   },
   {
@@ -84,9 +84,9 @@
     "role": "Payload Specialist",
     "roles": ["engineering"],
     "bio": "Noah designs and tests payload systems for satellites and experiments.",
-    "image": "/images/noahwilson.jpeg",
+    "image": "/images/noahwilson.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
     ]
   },
   {
@@ -94,9 +94,9 @@
     "role": "Project Manager",
     "roles": ["executive", "marketing", "comms"],
     "bio": "Olivia coordinates project timelines and team deliverables.",
-    "image": "/images/oliviadavis.jpeg",
+    "image": "/images/oliviadavis.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands al fa-linkedin" }
+      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
     ]
   }
 ]
