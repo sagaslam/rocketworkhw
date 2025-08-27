@@ -57,14 +57,14 @@
       
       // &:hover {
       //   background: #fff;
-      //   color: #0095DB;
-      //   border-color: #0095DB;
+      //   color: #18bfef;
+      //   border-color: #18bfef;
       // }
 
       &.active {
-        background: #0095DB;
+        background: #18bfef;
         color: #fff !important;
-        box-shadow:inset 0 0 0 2px #0095DB;
+        box-shadow:inset 0 0 0 2px #18bfef;
         //box-shadow: none;
       }
     }
@@ -258,23 +258,21 @@
   }
 
   .modal-content {
-    background: #111;
+    background: transparent;
     border-radius: 12px;
     width: 90%;
     max-width: 600px;
-    max-height: 90%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    max-height: 90vh;
+    min-height: 500px;
     position: relative;
-    color: #fff;
+    overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     animation: fadeInUp 0.35s ease both;
   }
 
   .modal-close {
     position: absolute;
-    top: 0.5em;
+    top: 0.2em;
     right: 0.8em;
     font-size: 2em;
     font-weight: bold;
@@ -282,6 +280,7 @@
     cursor: pointer;
     z-index: 10;
     transition: transform 0.2s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 
     &:hover {
       transform: scale(1.2);
@@ -290,23 +289,56 @@
   }
 
   .modal-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-height: 300px;
-    overflow: hidden;
+    height: 100%;
+    z-index: 1;
 
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
       object-fit: cover;
       display: block;
+      filter: saturate(0.3) brightness(0.7) contrast(0.85) 
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+      );
+      pointer-events: none;
     }
   }
 
   .modal-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+      to bottom,
+      rgba(73, 12, 59, 0) 0%,
+      rgba(73, 12, 59, 0.85) 50%,
+      rgba(73, 12, 59, 0.95) 100%
+    );
     padding: 1em;
-    flex: 1;
+    color: #fff;
+    z-index: 2;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start; /* Changed from flex-end to flex-start */
     gap: 0.6em;
     overflow-y: auto;
 
@@ -321,30 +353,36 @@
       margin: 0;
       color: #fff;
       line-height: 1.1em;
-      //font-size: 1.2em;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      flex-shrink: 0; /* Prevent heading from shrinking */
     }
 
     h3 {
-      margin: 0;
-      //font-size: 1.5em;
+      font-size: 1.5em;
+      margin-bottom: 0.3em;
+      font-weight: bold; /* Ensure it's visible */
     }
 
     p {
       margin: 0;
       line-height: 1.2;
       color: #ddd;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     }
 
     .modal-social {
       display: flex;
       justify-content: center;
-      margin-top: 0.5em;
+      margin-top: auto; /* Push social icons to bottom */
+      padding-top: 0.8em;
+      flex-shrink: 0;
 
       a.modal-icon {
         color: #fff;
         margin: 0 0.4em;
         font-size: 1.5em;
         transition: color 0.2s ease;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 
         &:hover {
           color: #1da1f2;
@@ -354,6 +392,24 @@
           display: none;
         }
       }
+    }
+  }
+}
+
+/* Alternative: If you want more space for the heading */
+// .modal .modal-text {
+//   height: 40%; /* Increase to 40% if content is getting cut off */
+//   padding-top: 1.5em; /* Add more top padding */
+// }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modal .modal-text {
+    height: 45%;
+    padding: 1.2em 1em;
+    
+    h3 {
+      font-size: 1.3em;
     }
   }
 }

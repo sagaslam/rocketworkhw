@@ -12,8 +12,8 @@ export const createNavigation = () => {
         </ul>
         <ul class="icons">
           <li>
-            <a href="#" class="icon brands fa-twitter"
-              ><span class="label">Twitter</span></a
+            <a href="#" class="icon brands fa-linkedin"
+              ><span class="label">LinkedIn</span></a
             >
           </li>
           <li>
