@@ -6,18 +6,18 @@ export const createNavigation = () => {
           <li><a href="/pages/projects.html" data-page="projects">projects</a></li>
           <li><a href="/pages/partners.html" data-page="partners">partners</a></li>
           <li><a href="/pages/joinus.html" data-page="joinus">join us</a></li>
-          <li><a href="/pages/about.html" data-page="aboutus">about us</a></li>
+          <li><a href="/pages/about.html" data-page="aboutus">subsystems</a></li>
           <li><a href="/pages/team.html" data-page="team">team</a></li>
           <li><a href="/pages/contact.html" data-page="contactus">contact us</a></li>
         </ul>
         <ul class="icons">
           <li>
-            <a href="#" class="icon brands fa-linkedin"
+            <a href="https://www.linkedin.com/company/hw-rocket-works/" target="_blank" rel="noopener noreferrer" class="icon brands fa-linkedin"
               ><span class="label">LinkedIn</span></a
             >
           </li>
           <li>
-            <a href="#" class="icon brands fa-instagram"
+            <a href="https://www.instagram.com/hwrocketworks" target="_blank" rel="noopener noreferrer" class="icon brands fa-instagram"
               ><span class="label">Instagram</span></a
             >
           </li>

@@ -35,7 +35,7 @@ export const pageConfigs = {
     ogImage: '/public/rocketworkshw.png'
   },
   aboutus: {
-    title: 'About us | Rocket Works',
+    title: 'Subsystems | Rocket Works',
     description: 'Welcome to Rocket Works at Heriot-Watt University',
     keywords: 'home, website, rocketry, rocket works',
     canonical: 'https://rocket.works/',

@@ -1,102 +1,32 @@
 [
   {
     "name": "Ihsaan Aslam",
-    "role": "President",
+    "role": "Chief Engineer & Co-Founder",
     "roles": ["executive", "engineering"],
-    "bio": "Ihsaan has 10 years of experience in aerospace design, specialising in payload systems.",
+    "bio": "Ihsaan has always been inspired by cutting edge technology in a variety of engineering fields, but has found that rocketry is a perfect confluence and playground for all the engineering skills required to make rocket flight successful",
     "image": "/images/ihsaanaslam.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
+      { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/ihsaanaslam/", "icon": "fa-linkedin" }
     ]
   },
   {
     "name": "William Lennox",
-    "role": "Vice-President",
+    "role": "Technical Director & Co-Founder",
     "roles": ["executive", "engineering"],
     "bio": "William leads our propulsion and structural engineering teams.",
     "image": "/images/williamlennox.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
+      { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/william-c-lennox/", "icon": "fa-linkedin" }
     ]
   },
   {
     "name": "Matthew Roberts",
-    "role": "Treasurer",
+    "role": "Finance Officer",
     "roles": ["executive"],
-    "bio": "Matthew manages budgets and fundraising efforts for our projects.",
+    "bio": "Matthew has various experience in running financial operations in societies and firms, but is particularly keen on creating strong foundations for such an interesting project within the rocketry sector.",
     "image": "/images/matthewroberts.jpg",
     "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
-    ]
-  },
-  {
-    "name": "Sophia Li",
-    "role": "Lead Engineer",
-    "roles": ["engineering"],
-    "bio": "Sophia specialises in spacecraft avionics and telemetry systems.",
-    "image": "/images/sophiali.jpg",
-    "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
-    ]
-  },
-  {
-    "name": "Ethan Patel",
-    "role": "Structural Engineer",
-    "roles": ["engineering"],
-    "bio": "Ethan focuses on materials and structural integrity for payload modules.",
-    "image": "/images/ethanpatel.jpg",
-    "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
-    ]
-  },
-  {
-    "name": "Ava Johnson",
-    "role": "Propulsion Specialist",
-    "roles": ["engineering"],
-    "bio": "Ava is responsible for testing and optimizing propulsion systems.",
-    "image": "/images/avajohnson.jpg",
-    "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
-    ]
-  },
-  {
-    "name": "Liam Smith",
-    "role": "Marketing Lead",
-    "roles": ["marketing"],
-    "bio": "Liam manages outreach, social media, and communications strategy.",
-    "image": "/images/liamsmith.jpg",
-    "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
-    ]
-  },
-  {
-    "name": "Emma Brown",
-    "role": "Outreach Coordinator",
-    "roles": ["marketing"],
-    "bio": "Emma connects with the community and manages STEM engagement events.",
-    "image": "/images/emmabrown.jpg",
-    "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "brands alt fa-linkedin" }
-    ]
-  },
-  {
-    "name": "Noah Wilson",
-    "role": "Payload Specialist",
-    "roles": ["engineering"],
-    "bio": "Noah designs and tests payload systems for satellites and experiments.",
-    "image": "/images/noahwilson.jpg",
-    "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
-    ]
-  },
-  {
-    "name": "Olivia Davis",
-    "role": "Project Manager",
-    "roles": ["executive", "marketing", "comms"],
-    "bio": "Olivia coordinates project timelines and team deliverables.",
-    "image": "/images/oliviadavis.jpg",
-    "social": [
-      { "platform": "LinkedIn", "url": "#", "icon": "fa-linkedin" }
+      { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/matthew--roberts/", "icon": "fa-linkedin" }
     ]
   }
 ]

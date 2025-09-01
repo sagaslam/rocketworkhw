@@ -59,7 +59,7 @@ export function initTeam() {
           ${member.social
             .map(
               (s) =>
-                `<a href="${s.url}" class="icon brands ${s.icon}"><span class="label">${s.platform}</span></a>`
+                `<a href="${s.url}" target="_blank" rel="noopener noreferrer"  class="icon brands ${s.icon}"><span class="label">${s.platform}</span></a>`
             )
             .join('')}
         </div>

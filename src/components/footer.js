@@ -45,11 +45,11 @@ export const createFooter = () => {
             <h3>Social</h3>
             <ul class="icons alt">
               <li>
-                <a href="#" class="icon brands alt fa-linkedin"
+                <a href="https://www.linkedin.com/company/hw-rocket-works/" target="_blank" rel="noopener noreferrer" class="icon brands alt fa-linkedin"
                   ><span class="label">Linkedin</span></a>
               </li>
               <li>
-                <a href="#" class="icon brands alt fa-instagram"
+                <a href="https://www.instagram.com/hwrocketworks" target="_blank" rel="noopener noreferrer" class="icon brands alt fa-instagram"
                   ><span class="label">Instagram</span></a>
               </li>
              </ul>
