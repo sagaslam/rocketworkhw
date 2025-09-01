@@ -24,6 +24,14 @@
 		z-index: 1;
 		min-height: 100vh;
 
+		img {
+			max-width: 20rem;
+			margin-bottom: 1rem;
+			margin-top: -5rem;
+			pointer-events: none;
+			//opacity: 0.90;
+			user-select: none;}
+
 		h1 {
 			font-size: 5rem;
 			line-height: 1;
