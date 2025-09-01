@@ -13,7 +13,7 @@
     "name": "William Lennox",
     "role": "Technical Director & Co-Founder",
     "roles": ["executive", "engineering"],
-    "bio": "William leads our propulsion and structural engineering teams.",
+    "bio": "Will has always been inspired by the innovation in the space industry and wants to promote rocketry within Heriot-Watt. Will has a keen interest in aerodynamics and simulations and is excited to push the boundaries of student rocketry.",
     "image": "/images/williamlennox.webp",
     "social": [
       { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/william-c-lennox/", "icon": "fa-linkedin" }
@@ -22,7 +22,7 @@
   {
     "name": "Matthew Roberts",
     "role": "Finance Officer",
-    "roles": ["executive"],
+    "roles": ["support"],
     "bio": "Matthew has various experience in running financial operations in societies and firms, but is particularly keen on creating strong foundations for such an interesting project within the rocketry sector.",
     "image": "/images/matthewroberts.webp",
     "social": [

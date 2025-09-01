@@ -7,10 +7,14 @@ export default class HeadManager {
     }
 
     this.defaultLinks = [
-      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-      { rel: 'icon', type: 'image/png', href: '/favicon-96x96.png' },
-      { rel: 'shortcut icon', href: '/favicon.ico' },
-
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png'
+      },
+      { rel: 'shortcut icon', sizes: 'any', href: '/favicon.ico' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       {
         rel: 'preconnect',

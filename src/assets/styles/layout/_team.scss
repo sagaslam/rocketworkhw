@@ -61,10 +61,13 @@
       //   border-color: #18bfef;
       // }
 
+
+
+
       &.active {
-        background: #18bfef;
+        background: #B84E8F;
         color: #fff !important;
-        box-shadow:inset 0 0 0 2px #18bfef;
+        box-shadow:inset 0 0 0 2px #B84E8F;
         //box-shadow: none;
       }
     }
