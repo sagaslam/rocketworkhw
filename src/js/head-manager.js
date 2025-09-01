@@ -12,9 +12,9 @@ export default class HeadManager {
         rel: 'icon',
         type: 'image/png',
         sizes: '32x32',
-        href: '/favicon-32x32.png'
+        href: '/favicon-32x32.png?2'
       },
-      { rel: 'shortcut icon', sizes: 'any', href: '/favicon.ico' },
+      { rel: 'shortcut icon', sizes: 'any', href: '/favicon.ico?2' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       {
         rel: 'preconnect',
