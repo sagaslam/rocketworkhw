@@ -10,42 +10,42 @@ export const pageConfigs = {
     title: 'Team | Rocket Works',
     description: 'Welcome to Rocket Works at Heriot-Watt University',
     keywords: 'home, website, rocketry, rocket works',
-    canonical: 'https://rocket.works/',
+    canonical: 'https://hwrocket.works/pages/team',
     ogImage: '/public/rocketworkshw.png'
   },
   projects: {
     title: 'Projects | Rocket Works',
     description: 'Welcome to Rocket Works at Heriot-Watt University',
     keywords: 'home, website, rocketry, rocket works',
-    canonical: 'https://rocket.works/',
+    canonical: 'https://hwrocket.works/pages/projects',
     ogImage: '/public/rocketworkshw.png'
   },
   partners: {
     title: 'Partners | Rocket Works',
     description: 'Welcome to Rocket Works at Heriot-Watt University',
     keywords: 'home, website, rocketry, rocket works',
-    canonical: 'https://rocket.works/',
+    canonical: 'https://hwrocket.works/pages/partners',
     ogImage: '/public/rocketworkshw.png'
   },
   contactus: {
     title: 'Contact us | Rocket Works',
     description: 'Welcome to Rocket Works at Heriot-Watt University',
     keywords: 'home, website, rocketry, rocket works',
-    canonical: 'https://rocket.works/',
+    canonical: 'https://hwrocket.works/pages/contact',
     ogImage: '/public/rocketworkshw.png'
   },
   aboutus: {
     title: 'Subsystems | Rocket Works',
     description: 'Welcome to Rocket Works at Heriot-Watt University',
     keywords: 'home, website, rocketry, rocket works',
-    canonical: 'https://rocket.works/',
+    canonical: 'https://hwrocket.works/pages/about',
     ogImage: '/public/rocketworkshw.png'
   },
   joinus: {
     title: 'Join us | Rocket Works',
     description: 'Welcome to Rocket Works at Heriot-Watt University',
     keywords: 'home, website, rocketry, rocket works',
-    canonical: 'https://rocket.works/',
+    canonical: 'https://hwrocket.works/pages/joinus',
     ogImage: '/public/rocketworkshw.png'
   }
 }

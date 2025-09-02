@@ -10,12 +10,11 @@
   },
   "devDependencies": {
     "sass": "^1.89.2",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "vite-plugin-sitemap": "^0.8.2"
   },
   "dependencies": {
-    "d3": "^7.9.0",
-    "d3-flextree": "^2.1.2",
-    "d3-org-chart": "^3.1.1",
+    "cssnano": "^7.1.1",
     "fast-glob": "^3.3.3",
     "jquery": "^3.7.1"
   }

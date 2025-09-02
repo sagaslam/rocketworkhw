@@ -1,8 +1,11 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import fg from 'fast-glob'
+import cssnano from 'cssnano'
+import Sitemap from 'vite-plugin-sitemap'
 
-export default defineConfig(async () => {
+export default defineConfig(async ({ command, mode }) => {
+  const isProduction = command === 'build'
   const files = await fg(['*.html', 'pages/**/*.html'], { cwd: __dirname })
 
   // Build Rollup input
@@ -16,14 +19,43 @@ export default defineConfig(async () => {
 
   return {
     build: {
+      // Enable minification for production
+      minify: 'esbuild', // or 'terser' for more aggressive minification
+
+      // CSS minification is enabled by default in production
+      cssMinify: true,
+
+      // Additional build optimizations
+      reportCompressedSize: true,
+      chunkSizeWarningLimit: 1000,
+
+      // Rollup options
       rollupOptions: {
-        input
+        input,
+        output: {
+          // Optimize chunk splitting
+          manualChunks: {
+            vendor: ['fast-glob'] // Example: separate vendor chunks
+          },
+          // Clean file naming for production
+          chunkFileNames: 'assets/[name]-[hash].js',
+          entryFileNames: 'assets/[name]-[hash].js',
+          assetFileNames: 'assets/[name]-[hash].[ext]'
+        }
       }
     },
 
     esbuild: {
-      drop: ['console', 'debugger']
+      // Drop console and debugger in production
+      drop: isProduction ? ['console', 'debugger'] : [],
+
+      // Enable minification
+      minify: true,
+
+      // Target modern browsers for better optimization
+      target: 'es2020'
     },
+
     // Root directory
     root: '.',
 
@@ -46,6 +78,20 @@ export default defineConfig(async () => {
     // CSS configuration
     css: {
       devSourcemap: true,
+
+      // Enable CSS minification in production
+      postcss: {
+        plugins: isProduction
+          ? [
+              // Add PostCSS plugins for production optimization
+              //require('autoprefixer'),
+              cssnano({
+                preset: 'default'
+              })
+            ]
+          : []
+      },
+
       preprocessorOptions: {
         // If you're using SCSS/Sass
         scss: {
@@ -103,11 +149,13 @@ export default defineConfig(async () => {
 
     // Plugin configuration
     plugins: [
-      // Add plugins as needed
-      // Example: legacy browser support
-      // legacy({
-      //   targets: ['defaults', 'not IE 11']
-      // })
+      // Sitemap generation
+      Sitemap({
+        hostname: 'https://hwrocket.works',
+        exclude: ['/admin', '/private'], // Pages to exclude from sitemap
+        generateRobotsTxt: false, // We'll use our custom robots.txt instead
+        outDir: 'dist'
+      })
     ],
 
     // Environment variables

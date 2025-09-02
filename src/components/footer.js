@@ -6,17 +6,17 @@ export const createFooter = () => {
           <form id="contactForm" >
             <div class="fields">
               <div class="field">
-                <label for="fullName">Name *</label>
+                <label for="contactName">Name *</label>
                 <input type="text" id="contactName" name="contactName" required />
               </div>
               <div class="field">
-                <label for="email">Email *</label>
+                <label for="contactEmail">Email *</label>
                 <input type="email" id="contactEmail" name="contactEmail" required />
               </div>
               <div class="field">
                 <label for="message">Message *</label>
                 <textarea id="message" name="message" required
-                  placeholder="Please share your message or enquiry here..."
+                  placeholder="Please share your message or enquiry here"
                 ></textarea>
                 <div>
                   <div class="char-count" id="charCount">0 / 500</div>

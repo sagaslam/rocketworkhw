@@ -2,7 +2,7 @@
 
 import { initBreakpoints, onBreakpoint } from '@js/breakpointsConfig.js'
 import browser from '@js/browser.min.js'
-import bgImg from '@images/bg.jpg'
+import bgImg from '@images/bg.webp'
 import overlayImg from '@images/overlay.png'
 
 export function initParallax(wrapper) {
