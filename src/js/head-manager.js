@@ -1,7 +1,7 @@
 export default class HeadManager {
   constructor() {
     this.defaultMeta = {
-      viewport: 'width=device-width, initial-scale=1.0, user-scalable=no',
+      viewport: 'width=device-width, initial-scale=1.0',
       author: 'Rocket Works | Heriot-Watt University',
       robots: 'index, follow'
     }
