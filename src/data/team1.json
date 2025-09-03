@@ -3,33 +3,53 @@
     "id": "a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6",
     "name": "Ihsaan Aslam",
     "role": "Chief Engineer & Co-Founder",
-    "roles": ["executive", "engineering"],
+    "roles": [
+      "executive",
+      "engineering"
+    ],
     "bio": "Ihsaan has always been inspired by cutting edge technology in a variety of engineering fields, but has found that rocketry is a perfect confluence and playground for all the engineering skills required to make rocket flight successful.",
     "image": "/images/ihsaanaslam.webp",
     "social": [
-      { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/ihsaanaslam/", "icon": "fa-linkedin" }
+      {
+        "platform": "LinkedIn",
+        "url": "https://www.linkedin.com/in/ihsaanaslam/",
+        "icon": "fa-linkedin"
+      }
     ]
   },
   {
     "id": "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
     "name": "William Lennox",
     "role": "Technical Director & Co-Founder",
-    "roles": ["executive", "engineering"],
+    "roles": [
+      "executive",
+      "engineering"
+    ],
     "bio": "Will has always been inspired by the innovation in the space industry and wants to promote rocketry within Heriot-Watt. Will has a keen interest in aerodynamics and simulations and is excited to push the boundaries of student rocketry.",
     "image": "/images/williamlennox.webp",
     "social": [
-      { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/william-c-lennox/", "icon": "fa-linkedin" }
+      {
+        "platform": "LinkedIn",
+        "url": "https://www.linkedin.com/in/william-c-lennox/",
+        "icon": "fa-linkedin"
+      }
     ]
   },
   {
     "id": "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
     "name": "Matthew Roberts",
     "role": "Finance Officer",
-    "roles": ["support"],
+    "roles": [
+      "support"
+    ],
     "bio": "Matthew has various experience in running financial operations in societies and firms, but is particularly keen on creating strong foundations for such an interesting project within the rocketry sector.",
     "image": "/images/matthewroberts.webp",
     "social": [
-      { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/matthew--roberts/", "icon": "fa-linkedin" }
+      {
+        "platform": "LinkedIn",
+        "url": "https://www.linkedin.com/in/matthew--roberts/",
+        "icon": "fa-linkedin"
+      }
     ]
   }
 ]
