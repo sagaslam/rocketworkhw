@@ -1,4 +1,4 @@
-import teamMembers from '@data/team1.json' assert { type: 'json' }
+import teamMembers from '@data/team.json' assert { type: 'json' }
 
 export function initTeam() {
   const teamGrid = document.querySelector('.team-grid')
