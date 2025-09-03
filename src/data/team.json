@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "name": "Ihsaan Aslam",
     "role": "Chief Engineer & Co-Founder",
     "roles": ["executive", "engineering"],
@@ -11,7 +10,6 @@
     ]
   },
   {
-    "id": 2,
     "name": "William Lennox",
     "role": "Technical Director & Co-Founder",
     "roles": ["executive", "engineering"],
@@ -22,7 +20,6 @@
     ]
   },
   {
-    "id":3,
     "name": "Matthew Roberts",
     "role": "Finance Officer",
     "roles": ["support"],
