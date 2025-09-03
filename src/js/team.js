@@ -1,4 +1,4 @@
-import teamMembers from '@data/team.json' assert { type: 'json' }
+import teamMembers from '@data/team1.json' assert { type: 'json' }
 
 export function initTeam() {
   const teamGrid = document.querySelector('.team-grid')
@@ -44,6 +44,7 @@ export function initTeam() {
   teamMembers.forEach((member) => {
     const card = document.createElement('div')
     card.classList.add('team-member')
+    card.dataset.id = member.id
     card.dataset.role = member.roles.join(' ')
     card.dataset.bio = member.bio
     card.dataset.name = member.name
@@ -53,6 +54,7 @@ export function initTeam() {
         <img src="${member.image}" alt="${member.name}">
       </div>
       <div class="member-info">
+
         <h4>${member.name}</h4>
         <h5>${member.role}</h5>
         <div class="member-social">
@@ -182,14 +184,6 @@ export function initTeam() {
       modalName.textContent = member.querySelector('h4').textContent
       modalRole.textContent = member.querySelector('h5').textContent
       modalBio.textContent = member.dataset.bio || 'Bio not available.'
-
-      // Clone social links
-      // modalSocial.innerHTML = ''
-      // member.querySelectorAll('.social a').forEach((link) => {
-      //   const cloned = link.cloneNode(true)
-      //   cloned.classList.add('modal-icon')
-      //   modalSocial.appendChild(cloned)
-      // })
 
       modal.classList.remove('hidden')
     })
