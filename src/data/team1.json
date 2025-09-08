@@ -71,7 +71,8 @@
         "icon": "fa-linkedin"
       }
     ],
-    "status": "active",
-    "id": "0b833ea5-48fa-47fc-85f3-859fb6c4b5db"
+    "status": "inactive",
+    "id": "0b833ea5-48fa-47fc-85f3-859fb6c4b5db",
+    "imageURL": "https://raw.githubusercontent.com/sagaslam/rocketworkhw/main/public/images/sagaslam.webp"
   }
 ]
