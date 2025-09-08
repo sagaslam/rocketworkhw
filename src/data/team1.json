@@ -55,5 +55,23 @@
       }
     ],
     "status": "active"
+  },
+  {
+    "name": "Sag Aslam",
+    "role": "testing",
+    "roles": [
+      "engineering"
+    ],
+    "bio": "testing new engines",
+    "image": "/images/sagaslam.webp",
+    "social": [
+      {
+        "platform": "LinkedIn",
+        "url": "https://www.linkedin.com/in/ihsaanaslam/",
+        "icon": "fa-linkedin"
+      }
+    ],
+    "status": "active",
+    "id": "0b833ea5-48fa-47fc-85f3-859fb6c4b5db"
   }
 ]
