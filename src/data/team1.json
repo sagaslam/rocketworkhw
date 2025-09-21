@@ -55,24 +55,5 @@
     ],
     "status": "active",
     "id": "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f"
-  },
-  {
-    "name": "Sag Aslam",
-    "role": "Tester",
-    "roles": [
-      "testing"
-    ],
-    "bio": "tester tester tester",
-    "image": "/images/sample.webp",
-    "social": [
-      {
-        "platform": "X",
-        "url": "/tester",
-        "icon": "fa-x-twitter"
-      }
-    ],
-    "status": "inactive",
-    "id": "5d671130-5a8f-4ea2-8660-142e8e5ffb05",
-    "imageURL": "https://raw.githubusercontent.com/sagaslam/rocketworkhw/main/public/images/sample.webp"
   }
 ]
